@@ -1,10 +1,11 @@
 # install on another machine
+
+```
 brew install git
 brew install cdargs
 brew install reattach-to-user-namespace
 brew install the_silver_searcher
 # PCKeyboardHack: http://pqrs.org/macosx/keyremap4macbook/extra.html
-
 
 cd ~
 git clone git@github.com:gedwards/dotvim.git ~/.vim
@@ -19,21 +20,22 @@ ln -s ~/.vim/bash_profile ~/.bash_profile
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
 cd ~/.vim
+```
 
+```
 # open vim
-# :BundleInstall
+:BundleInstall
 # exit vim
+```
 
-cd ~/.vim/bundle/command-t
-rvm use system # or rvm use 1.8.7
-rake make
-exit # exit the shell
-
+```
 # refresh vim with any changes made to :vimrc
 :so $MYVIMRC
+```
 
+```
 # Other apps
 # pomodoro
 # notational velocity
 # screenhero
-
+```

@@ -165,7 +165,7 @@ inoremap tms <Esc>mo:read! ruby -e "print Time.now.strftime('\%Y.\%m.\%d.\%H.\%M
 vmap <Leader>extract "ty<Esc>`<j0V`>dh\parent<CR>%o<CR>def<Esc>"tpkJ`]Oend<Esc>v%=:nohlsearch<CR>
 
 " scratch buffer
-map \scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
+map <Leader>scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
 
 " make Ack easier to access
 nnoremap <Leader>a :Ag

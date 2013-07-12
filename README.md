@@ -8,7 +8,7 @@ brew install the_silver_searcher
 # PCKeyboardHack: http://pqrs.org/macosx/keyremap4macbook/extra.html
 
 cd ~
-git clone git@github.com:gedwards/dotvim.git ~/.vim
+git clone git@github.com:gedwards/dotfiles.git ~/.vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 mkdir ~/.vim/backup
 ln -s ~/.vim/vimrc ~/.vimrc

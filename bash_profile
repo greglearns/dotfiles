@@ -44,8 +44,11 @@ alias ap='ansible-playbook'
 alias mtab='open -a MacVim'
 alias be='bundle exec'
 alias k1='kill -9 %1'
+alias dkl='docker kill `docker ps | cut -d " " -f 1 | grep -v ID`'
+alias d=docker
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+[[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"

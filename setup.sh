@@ -7,6 +7,7 @@ mkdir ~/.vim/backup
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
 ln -s ~/.vim/ackrc ~/.ackrc
+ln -s ~/.vim/jshintrc ~/.jshintrc
 ln -s ~/.vim/gitconfig ~/.gitconfig
 ln -s ~/.vim/git-prompt.conf ~/.git-prompt.conf
 ln -s ~/.vim/bash_profile ~/.bash_profile

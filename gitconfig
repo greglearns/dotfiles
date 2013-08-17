@@ -30,7 +30,7 @@
 [color]
 	ui = true
 [core]
-	excludesfile = /Users/gedwards/.gitignore_global
+	excludesfile = /Users/greg/.gitignore
 	whitespace = space-before-tab,tabwidth=2,trailing-space
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"

@@ -1,6 +1,8 @@
 # set VI as the command line editor
 # set -o vi
 
+eval "$(rbenv init -)"
+
 alias er='env | grep RAILS_ENV'
 alias erd='export RAILS_ENV=development; echo $RAILS_ENV'
 alias ert='export RAILS_ENV=test; echo $RAILS_ENV'
@@ -18,7 +20,7 @@ export GIT_PS1_SHOWUPSTREAM="git"
 # Git prompt
 [[ $- == *i* ]]   &&   . ~/.vim/git-prompt.sh
 
-export PATH="$PATH:/usr/local/share/npm/bin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/share/npm/bin"
 export NODE_PATH="/usr/local/lib/node_modules"
 
 #######################################################################################
@@ -50,5 +52,4 @@ alias d=docker
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 [[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"

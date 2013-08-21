@@ -5,6 +5,8 @@ brew install git
 brew install cdargs
 brew install reattach-to-user-namespace
 brew install the_silver_searcher
+brew install jshint
+[sudo] npm install -g js-beautify
 # PCKeyboardHack: http://pqrs.org/macosx/keyremap4macbook/extra.html
 
 cd ~

@@ -1,3 +1,4 @@
 ISO 8601 timestamp / datestamp
 ssh tunneling: ssh -i ~/.ec2/keypairs/us-east-1a_assistlyqa.pem  ubuntu@web1.deskqa3.com -L 55672:localhost:55672 -N
+ssh tunneling: ssh -f -N -L 4243:localhost:4243 index.vagrant.dev
 vim: argdo exe "normal @q" | w

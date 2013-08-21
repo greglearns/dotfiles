@@ -412,3 +412,29 @@ onoremap <silent> { :<C-U>call ParagraphMove(-1, 0, v:count)<CR>
 " vnoremap <silent> { :<C-U>call ParagraphMove(-1, 1)<CR>
 
 
+"Noah Isaacson Additions
+
+" Change match paren colors to be more readable
+:hi MatchParen ctermfg=cyan ctermbg=black  guifg=red guibg=black
+
+" Trim trailing whitepsace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+
+" Use system clipboard"
+set clipboard=unnamedplus
+
+" Disable Paste indenting
+:set paste
+
+" taken from https://coderwall.com/p/m2kp5q
+" first install with npm install -g js-beautify
+nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
+

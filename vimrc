@@ -433,7 +433,7 @@ autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <b
 " set clipboard=unnamedplus
 
 " Disable Paste indenting
-:set paste
+" :set paste
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify

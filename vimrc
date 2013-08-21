@@ -436,5 +436,5 @@ set clipboard=unnamedplus
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify
-nnoremap <leader>ff :%!js-beautify --jslint-happy --preserver-newlines --quiet --break-chained-methods --file -<CR>
+nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
 

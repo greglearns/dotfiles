@@ -430,7 +430,7 @@ autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <b
 
 
 " Use system clipboard"
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 " Disable Paste indenting
 :set paste

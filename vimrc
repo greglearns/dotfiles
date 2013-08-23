@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'pangloss/vim-javascript.git'
 " Bundle 'scrooloose/nerdtree.git'
-Bundle 'ddollar/nerdcommenter.git'
+" Bundle 'ddollar/nerdcommenter.git'
 Bundle 'tomtom/tcomment_vim.git'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'cakebaker/scss-syntax.vim.git'

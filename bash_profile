@@ -3,10 +3,6 @@
 
 eval "$(rbenv init -)"
 
-alias er='env | grep RAILS_ENV'
-alias erd='export RAILS_ENV=development; echo $RAILS_ENV'
-alias ert='export RAILS_ENV=test; echo $RAILS_ENV'
-
 EDITOR=/usr/bin/vim; export EDITOR
 
 export GIT_PS1_SHOWDIRTYSTATE=on
@@ -43,11 +39,10 @@ else # normal
 fi
 
 alias ap='ansible-playbook'
-alias mtab='open -a MacVim'
 alias be='bundle exec'
-alias k1='kill -9 %1'
-alias dkl='docker kill `docker ps | cut -d " " -f 1 | grep -v ID`'
 alias d=docker
+alias v=vagrant
+alias rr='rerun -x -c -b --'
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh

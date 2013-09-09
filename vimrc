@@ -97,16 +97,6 @@ endif
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
-  " Cmd-T tweaks
-  " as of March 2013, with current iTerm (1.0.0.20130319), tmux (1.8)
-  "   " and Vim (7.3, with patches 1-843), this is all I need:
-  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-  "
-  "       " when I originally started using Command-T inside a terminal,
-  "         " I used to need these as well:
-  let g:CommandTSelectNextMap = ['<C-j>', '<ESC>OB']
-  let g:CommandTSelectPrevMap = ['<C-k>', '<ESC>OA']
 endif
 
 nnoremap <F5> :GundoToggle<CR> " http://sjl.bitbucket.org/gundo.vim/
@@ -137,8 +127,8 @@ endfunction
 :map <Leader>parent :exe '?\%' . col(".") . 'c\w'
 
 " highlight (partial) word under cursor without moving
-:map <Leader>8 :let @/ = '\<'.expand('<cword>').'\>'\|set hlsearch<C-M>
-:map <Leader>g8 :let @/ = expand('<cword>')\|set hlsearch<C-M>
+" :map <Leader>8 :let @/ = '\<'.expand('<cword>').'\>'\|set hlsearch<C-M>
+" :map <Leader>g8 :let @/ = expand('<cword>')\|set hlsearch<C-M>
 
 " make it easier to type ':' commands without requiring the shift-key
 noremap ;; ;
@@ -151,19 +141,6 @@ imap jj <C-n>
 
 " show file list, even in Insert mode
 imap \t <Esc><c-p>
-" imap \t <Esc><Leader>t
-
-" text snippets
-inoremap bbb '-'*30
-inoremap xxx [x]
-inoremap lll console.log();<C-o>F)
-inoremap efff <Esc>bieffort <Esc>Ypibetter:<Esc>piworse:<Esc>piexpected:<Esc>kk^f l
-inoremap tsk <Esc>yyp:s/^  *//e<CR>:s/  *$//e<CR>:s/[^-_ a-zA-Z0-9]//ge<CR>:s/ /_/ge<CR>Vu==itask <Esc>kddpkA "<Esc>JxA" {<CR>}<Esc>:noh<CR>ko
-inoremap comppp complete: <Esc>:r ! ruby -e "require 'date'; print Date.today.to_s"<CR>kJ$a
-inoremap tms <Esc>mo:read! ruby -e "print Time.now.strftime('\%Y.\%m.\%d.\%H.\%M.\%S')"<CR>`oJEa
-
-" refactoring
-vmap <Leader>extract "ty<Esc>`<j0V`>dh\parent<CR>%o<CR>def<Esc>"tpkJ`]Oend<Esc>v%=:nohlsearch<CR>
 
 " scratch buffer
 map <Leader>scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
@@ -308,6 +285,9 @@ au BufNewFile,BufRead *.json set ft=javascript
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 autocmd BufEnter *.txt set spell
 " autocmd FileType txt source ~/.vim/txt.vim
+autocmd FileType javascript source ~/.vim/js.vim
+autocmd FileType ruby source ~/.vim/ruby.vim
+autocmd FileType text source ~/.vim/text.vim
 
 " add scss syntax highlighting
 au BufRead,BufNewFile *.scss set filetype=scss
@@ -350,8 +330,8 @@ set modelines=10
 color desert
 
 " Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set backupdir=~/.vim/backup//
+set directory=~/.vim/backup//
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0
@@ -428,12 +408,6 @@ endfun
 
 autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-
-" Use system clipboard"
-" set clipboard=unnamedplus
-
-" Disable Paste indenting
-" :set paste
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify

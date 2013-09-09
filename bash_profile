@@ -16,7 +16,7 @@ export GIT_PS1_SHOWUPSTREAM="git"
 # Git prompt
 [[ $- == *i* ]]   &&   . ~/.vim/git-prompt.sh
 
-export PATH="$PATH:/usr/local/sbin:/usr/local/share/npm/bin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/share/python"
 export NODE_PATH="/usr/local/lib/node_modules"
 
 #######################################################################################
@@ -43,6 +43,8 @@ alias be='bundle exec'
 alias d=docker
 alias v=vagrant
 alias rr='rerun -x -c -b --'
+alias rrp="rerun -x -c -b -p '**/*.text' --"
+alias tre='tree -I node_modules'
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh

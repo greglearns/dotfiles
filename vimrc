@@ -408,6 +408,16 @@ endfun
 
 autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" Replace tabs
+fun! <SID>ReplaceTabs()
+    let l = line(".")
+    let c = col(".")
+    %s/\t/  /e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
+
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify

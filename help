@@ -11,3 +11,7 @@ chmod 777 /tmp/pair
 # now the other user can connect with
 tmux -S /tmp/pair attach
 
+# syntax highlighting
+:scriptnames
+:set syntax
+

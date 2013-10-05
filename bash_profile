@@ -49,4 +49,4 @@ alias tre='tree -I node_modules'
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
-[[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"
+# [[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"

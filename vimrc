@@ -13,8 +13,6 @@ Bundle 'gmarik/vundle'
 
 " original repos on github
 Bundle 'pangloss/vim-javascript.git'
-" Bundle 'scrooloose/nerdtree.git'
-" Bundle 'ddollar/nerdcommenter.git'
 Bundle 'tomtom/tcomment_vim.git'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'cakebaker/scss-syntax.vim.git'
@@ -46,9 +44,6 @@ Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'jQuery'
 
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-
 filetype plugin indent on
 
 " --- vundle end -----
@@ -70,18 +65,10 @@ set encoding=utf-8
 " --- begin Greg improvements ----------
 let g:netrw_list_hide='\.DS_Store'
 
-set mouse=a
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
 
-" copy quicklist entries into args # http://blog.siyelo.com/vim-tips-part-ii
-command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-" populate the argument list with each of the files named in the quickfix list
-function! QuickfixFilenames()
-  let buffer_numbers = {}
-  for quickfix_item in getqflist()
-    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-  endfor
-  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-endfunction
+set mouse=a
 
 " in Terminal on the Mac, change insert mode cursor to a pipe
 if &term =~ "xterm"
@@ -100,26 +87,6 @@ if exists('$TMUX')
 endif
 
 nnoremap <F5> :GundoToggle<CR> " http://sjl.bitbucket.org/gundo.vim/
-
-" Search and Replace in Multiple Files
-" example:
-" :vimgrep /CurrencyNumberHelper/ app/models/*.rb
-" :Qargs
-" :argdo %s/CurrencyNumberHelper/CurrencyHelper/g
-" :argdo update
-
-command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-
-" populate the argument list with each of the files named in the quickfix list
-function! QuickfixFilenames()
-  let buffer_numbers = {}
-  for quickfix_item in getqflist()
-    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-  endfor
-  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-endfunction
-" end of Search and Replace in Multiple Files
-
 
 " jump to first word-letter within the first column
 " ?\%1c\w
@@ -154,7 +121,7 @@ vmap <Leader>a "sy:Ag! "<C-R>""
 nnoremap <Leader>z :ZoomWin<cr>
 
 " keep searches away from the edge
-set scrolloff=1
+" set scrolloff=1
 
 " easier window navigation
 nmap <C-H> <C-w>h
@@ -239,14 +206,6 @@ set wildignore+=*.png,*.jpg,*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.bun
 " Status bar
 set laststatus=2
 
-" NERDTree configuration
-" let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-" map <Leader>n :NERDTreeToggle<CR>
-" map <Leader>nn :NERDTreeFind<CR>
-
-" Command-T configuration
-let g:CommandTMaxHeight=20
-
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
@@ -283,7 +242,6 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
-autocmd BufEnter *.txt set spell
 " autocmd FileType txt source ~/.vim/txt.vim
 autocmd FileType javascript source ~/.vim/js.vim
 autocmd FileType ruby source ~/.vim/ruby.vim
@@ -396,7 +354,7 @@ onoremap <silent> { :<C-U>call ParagraphMove(-1, 0, v:count)<CR>
 "Noah Isaacson Additions
 
 " Change match paren colors to be more readable
-:hi MatchParen ctermfg=cyan ctermbg=black  guifg=red guibg=black
+:hi MatchParen ctermfg=cyan ctermbg=black guifg=red guibg=black
 
 " Trim trailing whitepsace
 fun! <SID>StripTrailingWhitespaces()

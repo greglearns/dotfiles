@@ -43,10 +43,11 @@ alias be='bundle exec'
 alias d=docker
 alias v=vagrant
 alias rr='rerun -x -c -b --'
-alias rrp="rerun -x -c -b -p '**/*.text' --"
+alias rrp="rerun -x -c -b -p '**/*.txt' --"
 alias tre='tree -I node_modules'
 
 if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
 # [[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"
+export PATH="$HOME/.rbenv/bin:$PATH"

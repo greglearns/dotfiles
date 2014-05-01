@@ -31,7 +31,6 @@ Bundle 'kien/ctrlp.vim'
 
 " vim-scripts repos
 Bundle 'VOoM'
-Bundle 'surround.vim'
 
 " Bundle 'Vitality'
 Bundle 'bufexplorer.zip'
@@ -278,7 +277,7 @@ vmap <C-Down> ]egv
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " Use modeline overrides
 set modeline

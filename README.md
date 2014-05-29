@@ -5,12 +5,15 @@ brew install git
 brew install cdargs
 brew install reattach-to-user-namespace
 brew install the_silver_searcher
-brew install jshint
+brew install ctags
+brew install npm
+npm install -g jshint
 [sudo] npm install -g js-beautify
 # PCKeyboardHack: http://pqrs.org/macosx/keyremap4macbook/extra.html
+# install sizeup
 
 cd ~
-git clone git@github.com:gedwards/dotfiles.git ~/.vim
+git clone git@github.com:greglearns/dotfiles.git ~/.vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 mkdir ~/.vim/backup
 ln -s ~/.vim/vimrc ~/.vimrc

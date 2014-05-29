@@ -32,6 +32,7 @@
 [core]
 	excludesfile = /Users/greg/.gitignore
 	whitespace = space-before-tab,tabwidth=2,trailing-space
+	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]

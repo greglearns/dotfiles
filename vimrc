@@ -4,48 +4,53 @@ set nocompatible
 " --- vundle begin ---
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+"set rtp+=~/.vim/bundle/vundle/
+"set rtp+=~/.vim/bundle/vundle/doc/
+"call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 
 " original repos on github
-Bundle 'pangloss/vim-javascript.git'
-Bundle 'tomtom/tcomment_vim.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'cakebaker/scss-syntax.vim.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'maxmeyer/vim-taskjuggler'
-" Bundle 'Lokaltog/powerline'
-Bundle 'mkitt/browser-refresh.vim'
-Bundle 'gmarik/ide-popup.vim'
-Bundle 'gmarik/github-search.vim'
-Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'avakhov/vim-yaml'
-Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle "mattn/emmet-vim"
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'pangloss/vim-javascript.git'
+Plugin 'tomtom/tcomment_vim.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'cakebaker/scss-syntax.vim.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'maxmeyer/vim-taskjuggler'
+" Plugin 'Lokaltog/powerline'
+Plugin 'mkitt/browser-refresh.vim'
+Plugin 'gmarik/ide-popup.vim'
+Plugin 'gmarik/github-search.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'avakhov/vim-yaml'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " vim-scripts repos
-Bundle 'VOoM'
+Plugin 'VOoM'
 
-" Bundle 'Vitality'
-Bundle 'bufexplorer.zip'
-Bundle 'gitv'
-Bundle 'Gundo'
-Bundle 'Handlebars'
-Bundle 'EasyMotion'
-Bundle 'ZoomWin'
-Bundle 'surround.vim'
-Bundle 'repeat.vim'
-Bundle 'jQuery'
+" Plugin 'Vitality'
+Plugin 'bufexplorer.zip'
+Plugin 'gitv'
+Plugin 'Gundo'
+Plugin 'Handlebars'
+Plugin 'EasyMotion'
+Plugin 'ZoomWin'
+Plugin 'surround.vim'
+Plugin 'repeat.vim'
+Plugin 'jQuery'
 
 filetype plugin indent on
-
+call vundle#end()            " required
+filetype plugin indent on    " required
 " --- vundle end -----
 
 " --- SETTINGS for vundle installs begin -----

@@ -27,6 +27,7 @@ Bundle 'avakhov/vim-yaml'
 Bundle 'mileszs/ack.vim'
 Bundle 'rking/ag.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle "mattn/emmet-vim"
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " vim-scripts repos
@@ -62,6 +63,33 @@ syntax on
 set encoding=utf-8
 
 " --- begin Greg improvements ----------
+
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+
+
+
+
 let g:netrw_list_hide='\.DS_Store'
 
 "This unsets the "last search pattern" register by hitting return
@@ -212,7 +240,7 @@ map <C-\> :tnext<CR>
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
+        \| exe "normal g'\"" | endif
 endif
 
 function! s:setupWrapping()
@@ -308,38 +336,38 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 function! ParagraphMove(delta, visual, count)
-    normal m'
-    normal |
-    if a:visual
-        normal gv
-    endif
+  normal m'
+  normal |
+  if a:visual
+    normal gv
+  endif
 
-    if a:count == 0
-        let limit = 1
-    else
-        let limit = a:count
-    endif
+  if a:count == 0
+    let limit = 1
+  else
+    let limit = a:count
+  endif
 
-    let i = 0
-    while i < limit
-        if a:delta > 0
-            " first whitespace-only line following a non-whitespace character
-            let pos1 = search("\\S", "W")
-            let pos2 = search("^\\s*$", "W")
-            if pos1 == 0 || pos2 == 0
-                let pos = search("\\%$", "W")
-            endif
-        elseif a:delta < 0
-            " first whitespace-only line preceding a non-whitespace character
-            let pos1 = search("\\S", "bW")
-            let pos2 = search("^\\s*$", "bW")
-            if pos1 == 0 || pos2 == 0
-                let pos = search("\\%^", "bW")
-            endif
-        endif
-        let i += 1
-    endwhile
-    normal |
+  let i = 0
+  while i < limit
+    if a:delta > 0
+      " first whitespace-only line following a non-whitespace character
+      let pos1 = search("\\S", "W")
+      let pos2 = search("^\\s*$", "W")
+      if pos1 == 0 || pos2 == 0
+        let pos = search("\\%$", "W")
+      endif
+    elseif a:delta < 0
+      " first whitespace-only line preceding a non-whitespace character
+      let pos1 = search("\\S", "bW")
+      let pos2 = search("^\\s*$", "bW")
+      if pos1 == 0 || pos2 == 0
+        let pos = search("\\%^", "bW")
+      endif
+    endif
+    let i += 1
+  endwhile
+  normal |
 endfunction
 
 nnoremap <silent> } :<C-U>call ParagraphMove( 1, 0, v:count)<CR>
@@ -357,20 +385,20 @@ onoremap <silent> { :<C-U>call ParagraphMove(-1, 0, v:count)<CR>
 
 " Trim trailing whitepsace
 fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfun
 
 autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Replace tabs
 fun! <SID>ReplaceTabs()
-    let l = line(".")
-    let c = col(".")
-    %s/\t/  /e
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  %s/\t/  /e
+  call cursor(l, c)
 endfun
 
 autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()

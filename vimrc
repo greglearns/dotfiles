@@ -17,6 +17,7 @@ call vundle#begin()
 " Bundle 'gmarik/vundle'
 
 " original repos on github
+Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
@@ -32,6 +33,7 @@ Plugin 'avakhov/vim-yaml'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'chase/vim-ansible-yaml'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " vim-scripts repos

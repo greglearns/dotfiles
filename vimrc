@@ -235,7 +235,7 @@ set smartcase
 
 " Tab completion
 " set wildmode=list:longest,list:full
-set wildignore+=*.png,*.jpg,*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.bundle,*/bundle/*,*/fixtures/*,*/node_modules/*
+set wildignore+=*.png,*.jpg,*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.bundle,*/bundle/*,*/fixtures/*,*/node_modules/*,*/build/*
 
 " Status bar
 set laststatus=2
@@ -313,6 +313,7 @@ vmap <C-Down> ]egv
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
+let g:syntastic_html_tidy_ignore_errors=["is not recognized!"]
 
 " Use modeline overrides
 set modeline

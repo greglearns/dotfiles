@@ -51,3 +51,4 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 
 # [[ -s "$HOME/.nvm" ]] && . "$HOME/.nvm/nvm.sh"
 export PATH="$HOME/.rbenv/bin:$PATH"
+if [ -e /Users/greg/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/greg/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

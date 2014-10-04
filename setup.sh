@@ -11,6 +11,7 @@ ln -s ~/.vim/jshintrc ~/.jshintrc
 ln -s ~/.vim/gitconfig ~/.gitconfig
 ln -s ~/.vim/git-prompt.conf ~/.git-prompt.conf
 ln -s ~/.vim/bash_profile ~/.bash_profile
+ln -s ~/.vim/zshrc ~/.zshrc
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 vim +BundleInstall +qall
 ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py

@@ -16,7 +16,7 @@ eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
-alias tre="tree -I 'node_modules|tmp'"
+alias tre="tree -nI 'node_modules|tmp'"
 alias rrn="rerun -c -b --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' --"
 alias rrp="rerun -c -b -x --pattern '**/*.{txt,text,plan}' --"
 alias rrr="rerun -c -b -x --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' "

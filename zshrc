@@ -25,7 +25,9 @@ alias ap="ansible-playbook"
 alias denv="docker-osx env" 
 alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"
-alias watch="watchy -w . -i '/\.|build|node_modules|tmp|log|\.bundle|\.json$' -- "
+alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -- "
+alias watchd="watchy -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -w "
+alias oc="overcast"
 
 export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
@@ -38,4 +40,9 @@ unsetopt correct
 
 # autoload -U zmv
 # alias mmv='noglob zmv -W'
+
+which docker-osx > /dev/null && eval $(docker-osx env)
+which overcast > /dev/null && eval $(overcast aliases)
+export HOST=${HOST:-$(hostname)}
+# export ANDROID_HOME=/usr/local/opt/android-sdk
 

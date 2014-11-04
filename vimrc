@@ -19,6 +19,7 @@ call vundle#begin()
 " original repos on github
 Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
+Plugin 'JavaScript-Indent'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'

@@ -1,3 +1,4 @@
+:verbose set ai? cin? cink? cino? si? inde? indk?
 args **/*.rb
 argdo %s/old/new/gce | update
 

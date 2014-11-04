@@ -11,7 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/python:/usr/local/share/npm/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/npm/bin:$PATH"
 eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
@@ -28,8 +28,9 @@ alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && d
 alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -- "
 alias watchd="watchy -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -w "
 alias oc="overcast"
+alias awsi="aws --profile ice"
 
-export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+# export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 export MYDRIVEADVISOR_DB_USER="root"
 export MYDRIVEADVISOR_DB_PWD="mysqlroot"
@@ -41,6 +42,8 @@ unsetopt correct
 # autoload -U zmv
 # alias mmv='noglob zmv -W'
 
+which boot2docker > /dev/null && $(boot2docker shellinit)
+which boot2docker > /dev/null && alias bd="boot2docker"
 which docker-osx > /dev/null && eval $(docker-osx env)
 which overcast > /dev/null && eval $(overcast aliases)
 export HOST=${HOST:-$(hostname)}

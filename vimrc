@@ -19,7 +19,7 @@ call vundle#begin()
 " original repos on github
 Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
-Plugin 'JavaScript-Indent'
+" Plugin 'JavaScript-Indent'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'
@@ -71,6 +71,11 @@ syntax on
 set encoding=utf-8
 
 " --- begin Greg improvements ----------
+
+" vmap <C-x> :!pbcopy<CR>
+" vmap <C-c> :w !pbcopy<CR><CR>
+" vmap <C-c> :!tee >(pbcopy)
+" map <C-c> y:e ~/clipsongzboard<CR>P:w !pbcopy<CR><CR>:bdelete!<CR>
 
 function! WrapForTmux(s)
   if !exists('$TMUX')
@@ -278,6 +283,7 @@ au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 " autocmd FileType txt source ~/.vim/txt.vim
+autocmd FileType haskell source ~/.vim/haskell.vim
 autocmd FileType javascript source ~/.vim/js.vim
 autocmd FileType ruby source ~/.vim/ruby.vim
 autocmd FileType text source ~/.vim/text.vim
@@ -400,7 +406,7 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType haskell,c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Replace tabs
 fun! <SID>ReplaceTabs()
@@ -410,7 +416,7 @@ fun! <SID>ReplaceTabs()
   call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
+autocmd FileType haskell,c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
 
 
 " taken from https://coderwall.com/p/m2kp5q

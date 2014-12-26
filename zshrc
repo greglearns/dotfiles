@@ -12,6 +12,7 @@ fi
 
 # Customize to your needs...
 export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/npm/bin:$PATH"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
 eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
@@ -42,10 +43,11 @@ unsetopt correct
 # autoload -U zmv
 # alias mmv='noglob zmv -W'
 
-which boot2docker > /dev/null && $(boot2docker shellinit)
+which boot2docker > /dev/null && $(boot2docker shellinit 2>/dev/null)
 which boot2docker > /dev/null && alias bd="boot2docker"
 which docker-osx > /dev/null && eval $(docker-osx env)
 which overcast > /dev/null && eval $(overcast aliases)
 export HOST=${HOST:-$(hostname)}
+export HOSTNAME=${HOST}
 # export ANDROID_HOME=/usr/local/opt/android-sdk
 

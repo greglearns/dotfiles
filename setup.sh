@@ -16,3 +16,15 @@ ln -s ~/.vim/tmux.conf ~/.tmux.conf
 vim +BundleInstall +qall
 ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
 
+npm install -g watchy
+brew install vim chromedriver
+# install
+# chromedriver
+# screenhero
+# hipchat
+# skype
+# sizeup
+# vagrant
+# iterm2
+# alfred
+

@@ -34,11 +34,6 @@ alias dcc="docker-compose"
 
 # export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
-export MYDRIVEADVISOR_DB_USER="root"
-export MYDRIVEADVISOR_DB_PWD="mysqlroot"
-export COMMON_DATA_DB_USER=$MYDRIVEADVISOR_DB_USER
-export COMMON_DATA_DB_PWD=$MYDRIVEADVISOR_DB_PWD
-
 unsetopt correct
 
 # autoload -U zmv

@@ -4,7 +4,6 @@ set nocompatible
 " --- vundle begin ---
 filetype off
 
-
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
@@ -17,6 +16,10 @@ call vundle#begin()
 " Bundle 'gmarik/vundle'
 
 " original repos on github
+Plugin 'elzr/vim-json'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'brandonbloom/vim-factor'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
 " Plugin 'JavaScript-Indent'
@@ -57,9 +60,12 @@ filetype plugin indent on    " required
 " --- vundle end -----
 
 " --- SETTINGS for vundle installs begin -----
+let g:vim_json_syntax_conceal = 0
 let g:RefreshRunningBrowserDefault = 'chrome'
 map <silent><leader>r :RRB<CR>
 imap \r <Esc>:RRB<CR>i
+
+let g:FactorRoot = '/Users/greg/project/factor'
 
 " --- SETTINGS for vundle installs end -----
 
@@ -279,12 +285,13 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 " add json syntax highlighting
-au BufNewFile,BufRead *.json set ft=javascript
+" au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 " autocmd FileType txt source ~/.vim/txt.vim
 autocmd FileType haskell source ~/.vim/haskell.vim
 autocmd FileType javascript source ~/.vim/js.vim
+autocmd FileType json source ~/.vim/json.vim
 autocmd FileType ruby source ~/.vim/ruby.vim
 autocmd FileType text source ~/.vim/text.vim
 

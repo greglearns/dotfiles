@@ -30,6 +30,7 @@ alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' 
 alias watchd="watchy -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -w "
 alias oc="overcast"
 alias awsi="aws --profile ice"
+alias dcc="docker-compose"
 
 # export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 

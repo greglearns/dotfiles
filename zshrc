@@ -23,7 +23,6 @@ alias rrp="rerun -c -b -x --pattern '**/*.{txt,text,plan}' --"
 alias rrr="rerun -c -b -x --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' "
 alias be="bundle exec"
 alias ap="ansible-playbook"
-alias denv="docker-osx env" 
 alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"
 alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -- "
@@ -42,7 +41,6 @@ unsetopt correct
 
 which boot2docker > /dev/null && $(boot2docker shellinit 2>/dev/null)
 which boot2docker > /dev/null && alias bd="boot2docker"
-which docker-osx > /dev/null && eval $(docker-osx env)
 which overcast > /dev/null && eval $(overcast aliases)
 export HOST=${HOST:-$(hostname)}
 export HOSTNAME=${HOST}

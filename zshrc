@@ -32,6 +32,8 @@ alias awsi="aws --profile ice"
 alias dcc="docker-compose"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 
+alias rm="nocorrect rm"
+
 # export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 unsetopt correct

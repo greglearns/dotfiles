@@ -12,23 +12,23 @@ fi
 
 # Customize to your needs...
 export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/npm/bin:$PATH"
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
 alias tre="tree -nI 'node_modules|tmp'"
-alias rrn="rerun -c -b --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' --"
-alias rrp="rerun -c -b -x --pattern '**/*.{txt,text,plan}' --"
-alias rrr="rerun -c -b -x --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' "
-alias be="bundle exec"
-alias ap="ansible-playbook"
+# alias rrn="rerun -c -b --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' --"
+# alias rrp="rerun -c -b -x --pattern '**/*.{txt,text,plan}' --"
+# alias rrr="rerun -c -b -x --pattern '**/*.{js,css,scss,sass,ejs,html,txt,ractive}' "
+# alias be="bundle exec"
+# alias ap="ansible-playbook"
 alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"
-alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -- "
-alias watchd="watchy -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -w "
-alias oc="overcast"
-alias awsi="aws --profile ice"
+# alias watch="watchy -w . -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -- "
+# alias watchd="watchy -i '/\.|build|node_modules|tmp/|log/|\.bundle|\.json$' -w "
+# alias oc="overcast"
+# alias awsi="aws --profile ice"
 alias dcc="docker-compose"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 

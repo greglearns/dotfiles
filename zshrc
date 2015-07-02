@@ -12,7 +12,7 @@ fi
 
 # Customize to your needs...
 export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/npm/bin:$PATH"
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh

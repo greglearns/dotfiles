@@ -4,7 +4,7 @@ set nocompatible
 " --- vundle begin ---
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "set rtp+=~/.vim/bundle/vundle/
@@ -16,9 +16,10 @@ call vundle#begin()
 " Bundle 'gmarik/vundle'
 
 " original repos on github
+" Plugin 'bitc/vim-hdevtools'
 Plugin 'elzr/vim-json'
 Plugin 'eagletmt/ghcmod-vim'
-Plugin 'brandonbloom/vim-factor'
+" Plugin 'brandonbloom/vim-factor'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
@@ -27,7 +28,7 @@ Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'
 Plugin 'tpope/vim-fugitive'
-Plugin 'maxmeyer/vim-taskjuggler'
+" Plugin 'maxmeyer/vim-taskjuggler'
 " Plugin 'Lokaltog/powerline'
 Plugin 'mkitt/browser-refresh.vim'
 Plugin 'gmarik/ide-popup.vim'
@@ -41,13 +42,13 @@ Plugin 'chase/vim-ansible-yaml'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " vim-scripts repos
-Plugin 'VOoM'
+" Plugin 'VOoM'
 
 " Plugin 'Vitality'
 Plugin 'bufexplorer.zip'
 Plugin 'gitv'
 Plugin 'Gundo'
-Plugin 'Handlebars'
+" Plugin 'Handlebars'
 Plugin 'EasyMotion'
 Plugin 'ZoomWin'
 Plugin 'surround.vim'

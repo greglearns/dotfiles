@@ -32,6 +32,8 @@ alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && d
 alias dcc="docker-compose"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 
+alias rm="nocorrect rm"
+
 # export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 unsetopt correct

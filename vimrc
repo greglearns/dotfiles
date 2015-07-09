@@ -16,10 +16,10 @@ call vundle#begin()
 " Bundle 'gmarik/vundle'
 
 " original repos on github
-" Plugin 'bitc/vim-hdevtools'
+Plugin 'bitc/vim-hdevtools'
 Plugin 'elzr/vim-json'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'Shougo/vimproc.vim'
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'Shougo/vimproc.vim'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'tomtom/tcomment_vim.git'

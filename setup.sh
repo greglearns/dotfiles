@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # DO THESE FIRST
 # git clone https://github.com/greglearns/dotfiles.git ~/.vim

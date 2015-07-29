@@ -15,6 +15,7 @@ call vundle#begin()
 " required!
 " Bundle 'gmarik/vundle'
 
+Plugin 'gmarik/Vundle.vim'
 " original repos on github
 Plugin 'bitc/vim-hdevtools'
 Plugin 'elzr/vim-json'

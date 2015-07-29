@@ -1,7 +1,7 @@
 # set VI as the command line editor
 # set -o vi
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 EDITOR=/usr/bin/vim; export EDITOR
 

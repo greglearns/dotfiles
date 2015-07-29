@@ -1,8 +1,10 @@
 #!/bin/bash -e
 
+# DO THESE FIRST
 # git clone https://github.com/greglearns/dotfiles.git ~/.vim
+# zsh / prezto: https://github.com/sorin-ionescu/prezto
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle
 mkdir ~/.vim/backup
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
@@ -14,10 +16,10 @@ ln -s ~/.vim/bash_profile ~/.bash_profile
 ln -s ~/.vim/zshrc ~/.zshrc
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 vim +BundleInstall +qall
-ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
+# ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
 
-npm install -g watchy
-brew install vim chromedriver
+# npm install -g watchy
+brew install npm tmux vim chromedriver
 # install
 # chromedriver
 # screenhero
@@ -27,4 +29,5 @@ brew install vim chromedriver
 # vagrant
 # iterm2
 # alfred
+
 

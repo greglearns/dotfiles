@@ -1,3 +1,8 @@
+http://www.openvim.com/
+
+# refresh vim with any changes made to :vimrc
+:so $MYVIMRC
+
 :verbose set ai? cin? cink? cino? si? inde? indk?
 args **/*.rb
 argdo %s/old/new/gce | update

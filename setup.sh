@@ -21,8 +21,10 @@ ln -s ~/.vim/zshrc ~/.zshrc
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 # ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
 
+which apt-get && apt-get install -y silversearcher-ag git npm
+
 # npm install -g watchy
-brew install npm tmux vim chromedriver
+which brew && brew install npm tmux vim chromedriver
 # install
 # iterm2
 # skype
@@ -31,11 +33,11 @@ brew install npm tmux vim chromedriver
 # alfred
 # screenhero
 
-brew install git
-brew install cdargs
-brew install reattach-to-user-namespace
-brew install the_silver_searcher
-brew install ctags
-brew install npm
+which brew && brew install git
+which brew && brew install cdargs
+which brew && brew install reattach-to-user-namespace
+which brew && brew install the_silver_searcher
+which brew && brew install ctags
+which brew && brew install npm
 npm install -g jshint
 # [sudo] npm install -g js-beautify

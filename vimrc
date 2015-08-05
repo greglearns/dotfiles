@@ -1,4 +1,4 @@
-syntax on
+" syntax on
 set nocompatible
 
 " Directories for swp files
@@ -60,7 +60,6 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'jQuery'
 
-filetype plugin indent on
 call vundle#end()            " required
 filetype plugin indent on    " required
 " --- vundle end -----

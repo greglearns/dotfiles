@@ -2,8 +2,8 @@
 set nocompatible
 
 " Directories for swp files
-set backupdir=~/.vim/backup/
-set directory=~/.vim/backup/
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
 
 " --- vundle begin ---
 filetype off
@@ -70,7 +70,7 @@ let g:RefreshRunningBrowserDefault = 'chrome'
 map <silent><leader>r :RRB<CR>
 imap \r <Esc>:RRB<CR>i
 
-let g:FactorRoot = '/Users/greg/project/factor'
+" let g:FactorRoot = '/Users/greg/project/factor'
 
 " --- SETTINGS for vundle installs end -----
 

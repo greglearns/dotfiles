@@ -7,7 +7,6 @@
 mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-vim +BundleInstall +qall
 mkdir ~/.vim/backup
 test -f ~/.vimrc && mv ~/.vimrc ~/.gvimrc ~/.ackrc ~/.jshintrc ~/.gitconfig ~/.git-prompt.conf ~/.bash_profile ~/.zshrc ~/.tmux.conf ~/.vim/backup
 
@@ -21,6 +20,8 @@ ln -s ~/.vim/bash_profile ~/.bash_profile
 ln -s ~/.vim/zshrc ~/.zshrc
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 # ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
+
+vim +BundleInstall +qall
 
 which apt-get && apt-get install -y silversearcher-ag git npm
 

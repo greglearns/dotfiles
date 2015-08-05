@@ -1,6 +1,10 @@
 syntax on
 set nocompatible
 
+" Directories for swp files
+set backupdir=~/.vim/backup/
+set directory=~/.vim/backup/
+
 " --- vundle begin ---
 filetype off
 
@@ -27,7 +31,7 @@ Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mkitt/browser-refresh.vim'
+" Plugin 'mkitt/browser-refresh.vim'
 Plugin 'gmarik/ide-popup.vim'
 Plugin 'gmarik/github-search.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -337,10 +341,6 @@ set modelines=10
 
 " Default color scheme
 color desert
-
-" Directories for swp files
-set backupdir=~/.vim/backup//
-set directory=~/.vim/backup//
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0

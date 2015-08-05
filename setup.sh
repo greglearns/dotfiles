@@ -26,6 +26,7 @@ which apt-get && apt-get install -y silversearcher-ag git npm
 
 # npm install -g watchy
 which brew && brew install npm tmux vim chromedriver
+which brew && brew install git cdargs reattach-to-user-namespace the_silver_searcher ctags npm
 # install
 # iterm2
 # skype
@@ -34,6 +35,7 @@ which brew && brew install npm tmux vim chromedriver
 # alfred
 # screenhero
 
-which brew && brew install git cdargs reattach-to-user-namespace the_silver_searcher ctags npm
 which npm && npm install -g jshint
+# sudo ln -s /usr/bin/node{js,}
+
 # [sudo] npm install -g js-beautify

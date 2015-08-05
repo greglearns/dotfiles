@@ -36,7 +36,7 @@ which brew && brew install git cdargs reattach-to-user-namespace the_silver_sear
 # alfred
 # screenhero
 
-which npm && npm install -g jshint
+# which npm && npm install -g jshint
 # sudo ln -s /usr/bin/node{js,}
 
 # [sudo] npm install -g js-beautify

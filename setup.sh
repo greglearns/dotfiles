@@ -4,11 +4,12 @@
 # git clone https://github.com/greglearns/dotfiles.git ~/.vim
 # zsh / prezto: https://github.com/sorin-ionescu/prezto
 
+mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 vim +BundleInstall +qall
 mkdir ~/.vim/backup
-mv ~/.vimrc ~/.gvimrc ~/.ackrc ~/.jshintrc ~/.gitconfig ~/.git-prompt.conf ~/.bash_profile ~/.zshrc ~/.tmux.conf ~/.vim/backup 
+test -f ~/.vimrc && mv ~/.vimrc ~/.gvimrc ~/.ackrc ~/.jshintrc ~/.gitconfig ~/.git-prompt.conf ~/.bash_profile ~/.zshrc ~/.tmux.conf ~/.vim/backup
 
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
@@ -33,11 +34,6 @@ which brew && brew install npm tmux vim chromedriver
 # alfred
 # screenhero
 
-which brew && brew install git
-which brew && brew install cdargs
-which brew && brew install reattach-to-user-namespace
-which brew && brew install the_silver_searcher
-which brew && brew install ctags
-which brew && brew install npm
-npm install -g jshint
+which brew && brew install git cdargs reattach-to-user-namespace the_silver_searcher ctags npm
+which npm && npm install -g jshint
 # [sudo] npm install -g js-beautify

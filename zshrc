@@ -43,7 +43,8 @@ unsetopt correct
 
 which boot2docker > /dev/null && $(boot2docker shellinit 2>/dev/null)
 which boot2docker > /dev/null && alias bd="boot2docker"
-which overcast > /dev/null && eval $(overcast aliases)
+# which overcast > /dev/null && eval $(overcast aliases)
+which docker-machine > /dev/null && eval "$(docker-machine env default)"
 export HOST=${HOST:-$(hostname)}
 export HOSTNAME=${HOST}
 # export ANDROID_HOME=/usr/local/opt/android-sdk

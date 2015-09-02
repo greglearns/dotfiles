@@ -1,5 +1,9 @@
-syntax on
+" syntax on
 set nocompatible
+
+" Directories for swp files
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
 
 " --- vundle begin ---
 filetype off
@@ -15,6 +19,7 @@ call vundle#begin()
 " required!
 " Bundle 'gmarik/vundle'
 
+Plugin 'gmarik/Vundle.vim'
 " original repos on github
 Plugin 'bitc/vim-hdevtools'
 Plugin 'elzr/vim-json'
@@ -26,7 +31,7 @@ Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mkitt/browser-refresh.vim'
+" Plugin 'mkitt/browser-refresh.vim'
 Plugin 'gmarik/ide-popup.vim'
 Plugin 'gmarik/github-search.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -55,7 +60,6 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'jQuery'
 
-filetype plugin indent on
 call vundle#end()            " required
 filetype plugin indent on    " required
 " --- vundle end -----
@@ -66,7 +70,7 @@ let g:RefreshRunningBrowserDefault = 'chrome'
 map <silent><leader>r :RRB<CR>
 imap \r <Esc>:RRB<CR>i
 
-let g:FactorRoot = '/Users/greg/project/factor'
+" let g:FactorRoot = '/Users/greg/project/factor'
 
 " --- SETTINGS for vundle installs end -----
 
@@ -289,6 +293,7 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 " au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
+au BufRead,BufNewFile *.txt set filetype=text
 " autocmd FileType txt source ~/.vim/txt.vim
 autocmd FileType haskell source ~/.vim/haskell.vim
 autocmd FileType javascript source ~/.vim/js.vim
@@ -336,10 +341,6 @@ set modelines=10
 
 " Default color scheme
 color desert
-
-" Directories for swp files
-set backupdir=~/.vim/backup//
-set directory=~/.vim/backup//
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0

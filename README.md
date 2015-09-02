@@ -1,46 +1,21 @@
-# install on another machine
+# Setting up a greglearns computer
 
-```
-brew install git
-brew install cdargs
-brew install reattach-to-user-namespace
-brew install the_silver_searcher
-brew install ctags
-brew install npm
-npm install -g jshint
-[sudo] npm install -g js-beautify
-# PCKeyboardHack: http://pqrs.org/macosx/keyremap4macbook/extra.html
-# install sizeup
+## Installation
 
-cd ~
-git clone git@github.com:greglearns/dotfiles.git ~/.vim
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-mkdir ~/.vim/backup
-ln -s ~/.vim/vimrc ~/.vimrc
-ln -s ~/.vim/gvimrc ~/.gvimrc
-ln -s ~/.vim/ackrc ~/.ackrc
-ln -s ~/.vim/gitconfig ~/.gitconfig
-ln -s ~/.vim/git-prompt.conf ~/.git-prompt.conf
-ln -s ~/.vim/bash_profile ~/.bash_profile
-ln -s ~/.vim/tmux.conf ~/.tmux.conf
-ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
-cd ~/.vim
-```
+1. install [xcode](https://developer.apple.com/xcode/downloads/)
+1. install [iterm2](https://www.iterm2.com/)
+1. open iterm2 and install zsh using [prezto](https://github.com/sorin-ionescu/prezto)
+1. install [brew](http://brew.sh/)
+1. Install [git](https://git-scm.com/downloads)
+1. ```git clone https://github.com/greglearns/dotfiles.git ~/.vim```
+1. ```cd ~/.vim```
+1. ```./setup.sh```
+1. install [docker](https://docs.docker.com/installation/)
+1. install [sizeup](http://www.irradiatedsoftware.com/sizeup/) to resize and position your iterm2 windows
 
-```
-# open vim
-:BundleInstall
-# exit vim
-```
+## Bonus installation
 
-```
-# refresh vim with any changes made to :vimrc
-:so $MYVIMRC
-```
+1. Reassign your caps lock to be a control key. Handy for Vim.
+1. use [MenuTimer](http://devstorm-apps.com/all-portfolio-list/menutimer/) each time you start a task that could turn into hours, so that you realize the passage of time and stop yourself
+1. install [alfred](http://www.alfredapp.com/), which you can use to launch programs, but you can also type "command-space" to open alfred, then type "define spelling" or "spell spellink" to learn new words
 
-```
-# Other apps
-# pomodoro
-# notational velocity
-# screenhero
-```

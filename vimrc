@@ -83,6 +83,9 @@ set encoding=utf-8
 
 " --- begin Greg improvements ----------
 
+inoremap <Tab> <Esc>`^
+inoremap <Leader><Tab> <Tab>
+
 " vmap <C-x> :!pbcopy<CR>
 " vmap <C-c> :w !pbcopy<CR><CR>
 " vmap <C-c> :!tee >(pbcopy)

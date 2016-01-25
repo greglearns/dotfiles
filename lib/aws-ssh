@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# Setup:
+# 1) Install awscli and jq
+# 2) Add your AWS credentials to ~/.aws/credentials
+
+set -eo pipefail
+
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 (<instance-name> | env <env-name>) [command]..."
+  exit 1
+fi
+
+export AWS_REGIONS='us-west-1'
+
+if [[ "$1" == 'env' ]]; then
+  AWS_FILTER="Name=tag:env,Values=$2"
+  shift
+else
+  AWS_FILTER="Name=tag:Name,Values=$1"
+fi
+shift
+
+aws-json() {
+  local jq_format="${1? Missing jq format}"
+  shift
+  local out=
+
+  if out="$(aws "$@" 2>&1)"; then
+    if [[ -z "$jq_format" ]] || jq -r "$jq_format" <<< "$out"; then
+      return 0
+    fi
+  fi
+   echo "aws-json: $out" >&2
+  return 1
+}
+
+for dn in $(aws-json '.Reservations[].Instances[].PublicDnsName' ec2 describe-instances --filters $AWS_FILTER); do
+  echo "$dn" >&2
+  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$dn" "$*"
+done
+

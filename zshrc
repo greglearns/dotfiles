@@ -11,8 +11,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-export PATH="$HOME/.rbenv/bin:$HOME/lib:/usr/local/share/npm/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/lib:/usr/local/bin:$PATH"
+export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$HOME/.local/bin:$PATH"
 # eval "$(rbenv init -)"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
@@ -41,11 +41,12 @@ unsetopt correct
 # autoload -U zmv
 # alias mmv='noglob zmv -W'
 
-which boot2docker > /dev/null && $(boot2docker shellinit 2>/dev/null)
-which boot2docker > /dev/null && alias bd="boot2docker"
+# which boot2docker > /dev/null && $(boot2docker shellinit 2>/dev/null)
+# which boot2docker > /dev/null && alias bd="boot2docker"
 # which overcast > /dev/null && eval $(overcast aliases)
-which docker-machine > /dev/null && eval "$(docker-machine env default)"
+which docker-machine > /dev/null && eval "$(docker-machine env audsci)"
 export HOST=${HOST:-$(hostname)}
 export HOSTNAME=${HOST}
 # export ANDROID_HOME=/usr/local/opt/android-sdk
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
 

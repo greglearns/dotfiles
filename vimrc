@@ -22,6 +22,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " original repos on github
 Plugin 'bitc/vim-hdevtools'
+Plugin 'rizzatti/dash.vim'
 Plugin 'elzr/vim-json'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'Shougo/vimproc.vim'

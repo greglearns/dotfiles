@@ -24,14 +24,20 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'rizzatti/dash.vim'
 Plugin 'elzr/vim-json'
+Plugin 'rust-lang/rust.vim'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'Shougo/vimproc.vim'
+" Plugin 'elm.vim'
+Plugin 'lambdatoast/elm.vim'
 Plugin 'mattn/emmet-vim.git'
+Plugin 'raichoo/purescript-vim'
+Plugin 'frigoeu/psc-ide-vim'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'cakebaker/scss-syntax.vim.git'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-abolish'
 " Plugin 'mkitt/browser-refresh.vim'
 Plugin 'gmarik/ide-popup.vim'
 Plugin 'gmarik/github-search.vim'
@@ -71,6 +77,12 @@ let g:RefreshRunningBrowserDefault = 'chrome'
 map <silent><leader>r :RRB<CR>
 imap \r <Esc>:RRB<CR>i
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]((\.(git|hg|svn))|elm-stuff)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 " let g:FactorRoot = '/Users/greg/project/factor'
 
 " --- SETTINGS for vundle installs end -----
@@ -84,7 +96,16 @@ set encoding=utf-8
 
 " --- begin Greg improvements ----------
 
+" turn off annoying beep
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+
+
 inoremap <Tab> <Esc>`^
+nnoremap <Tab> <Esc>i<Esc>
+" nnoremap <Tab> <Esc>`^i<Esc>`^
 inoremap <Leader><Tab> <Tab>
 
 " vmap <C-x> :!pbcopy<CR>
@@ -116,9 +137,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 
 let g:netrw_list_hide='\.DS_Store'
-
-"This unsets the "last search pattern" register by hitting return
-nnoremap <CR> :noh<CR><CR>
 
 set mouse=a
 
@@ -245,6 +263,32 @@ nnoremap <leader>ft Vatzf
 
 " --- end Greg improvements ------------
 
+
+
+
+" function! ToggleEnterMapping()
+"   if empty(mapcheck('<CR>', 'i'))
+"     inoremap <CR> <Esc>`^
+"     return "\<Esc>"
+"   else
+"     iunmap <CR>
+"     return "\<CR>"
+"   endif
+" endfunction
+" call ToggleEnterMapping()
+" inoremap <expr> <S-CR> ToggleEnterMapping()
+" Optional (so <CR> cancels prefix, selection, operator).
+inoremap <CR> <Esc>
+inoremap <Leader><CR> <CR>
+" inoremap <CR> <Esc>`^
+vnoremap <CR> <Esc>gV
+onoremap <CR> <Esc>
+" nnoremap <CR> <Esc>
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+
+
 " Whitespace stuff
 set nowrap
 set tabstop=2
@@ -304,6 +348,7 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 au BufRead,BufNewFile *.txt set filetype=text
 " autocmd FileType txt source ~/.vim/txt.vim
+autocmd FileType elm source ~/.vim/elm.vim
 autocmd FileType haskell source ~/.vim/haskell.vim
 autocmd FileType javascript source ~/.vim/js.vim
 autocmd FileType json source ~/.vim/json.vim
@@ -424,7 +469,7 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType haskell,c,cpp,elm,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Replace tabs
 fun! <SID>ReplaceTabs()
@@ -434,10 +479,14 @@ fun! <SID>ReplaceTabs()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
+autocmd FileType haskell,c,cpp,elm,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
 
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify
 nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
+
+if !empty(glob("src/Main.elm"))
+  argadd src/*.elm
+endif
 

@@ -28,7 +28,9 @@ Plugin 'rust-lang/rust.vim'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'Shougo/vimproc.vim'
 " Plugin 'elm.vim'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'mbbill/undotree'
+Plugin 'raimondi/delimitMate'
+Plugin 'elmcast/elm-vim'
 Plugin 'mattn/emmet-vim.git'
 Plugin 'raichoo/purescript-vim'
 Plugin 'frigoeu/psc-ide-vim'
@@ -65,7 +67,6 @@ Plugin 'EasyMotion'
 Plugin 'ZoomWin'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
-Plugin 'jQuery'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -74,6 +75,11 @@ filetype plugin indent on    " required
 " --- SETTINGS for vundle installs begin -----
 let g:vim_json_syntax_conceal = 0
 let g:RefreshRunningBrowserDefault = 'chrome'
+let g:rustfmt_autosave = 1
+let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 1
+let g:psc_ide_syntastic_mode = 1
+
 map <silent><leader>r :RRB<CR>
 imap \r <Esc>:RRB<CR>i
 
@@ -202,10 +208,10 @@ nnoremap <Leader>z :ZoomWin<cr>
 " set scrolloff=1
 
 " easier window navigation
-nmap <C-H> <C-w>h
-nmap <C-J> <C-w>j
-nmap <C-K> <C-w>k
-nmap <C-L> <C-w>l
+nmap <C-H> <C-w>h<C-w>=
+nmap <C-J> <C-w>j<C-w>=
+nmap <C-K> <C-w>k<C-w>=
+nmap <C-L> <C-w>l<C-w>=
 
 " close the window to the left of this one
 noremap <silent> <Leader>hc :wincmd h<cr>:close<cr>
@@ -349,6 +355,7 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 au BufRead,BufNewFile *.txt set filetype=text
 " autocmd FileType txt source ~/.vim/txt.vim
 autocmd FileType elm source ~/.vim/elm.vim
+autocmd FileType purs source ~/.vim/purescript.vim
 autocmd FileType haskell source ~/.vim/haskell.vim
 autocmd FileType javascript source ~/.vim/js.vim
 autocmd FileType json source ~/.vim/json.vim
@@ -469,7 +476,7 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,elm,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType haskell,c,cpp,elm, purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Replace tabs
 fun! <SID>ReplaceTabs()
@@ -479,7 +486,7 @@ fun! <SID>ReplaceTabs()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,elm,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
+autocmd FileType haskell,c,cpp,elm, purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
 
 
 " taken from https://coderwall.com/p/m2kp5q
@@ -488,5 +495,9 @@ nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --js
 
 if !empty(glob("src/Main.elm"))
   argadd src/*.elm
+endif
+
+if !empty(glob("src/main.rs")) || !empty(glob("src/lib.rs"))
+  argadd src/*.rs
 endif
 

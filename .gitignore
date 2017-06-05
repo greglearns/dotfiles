@@ -1,6 +1,5 @@
-.release-notes.txt
-command-t.recipe
-bundle
+.git-prompt_files
 backup
+view
 .netrwhist
-bundle/vundle
+bundle

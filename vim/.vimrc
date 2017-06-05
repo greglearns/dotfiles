@@ -476,7 +476,7 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,elm, purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType haskell,c,cpp,elm,purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Replace tabs
 fun! <SID>ReplaceTabs()
@@ -486,7 +486,7 @@ fun! <SID>ReplaceTabs()
   call cursor(l, c)
 endfun
 
-autocmd FileType haskell,c,cpp,elm, purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
+autocmd FileType haskell,c,cpp,elm,purs,js,javascript,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>ReplaceTabs()
 
 
 " taken from https://coderwall.com/p/m2kp5q

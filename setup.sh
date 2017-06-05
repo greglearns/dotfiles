@@ -1,33 +1,68 @@
 #!/bin/bash
+set -euxo pipefail
 
 # DO THESE FIRST
-# git clone https://github.com/greglearns/dotfiles.git ~/.vim
+# git clone https://github.com/greglearns/dotfiles.git ~/dotfiles
 # zsh / prezto: https://github.com/sorin-ionescu/prezto
+# nix-env -qa whatever
 
-mkdir -p ~/.vim/bundle
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if ! [ -x "$(command -v curl)" ]; then
+	sudo apt update
+	sudo apt install curl -y
+fi
 
-mkdir ~/.vim/backup
-test -f ~/.vimrc && mv ~/.vimrc ~/.gvimrc ~/.ackrc ~/.jshintrc ~/.gitconfig ~/.git-prompt.conf ~/.bash_profile ~/.zshrc ~/.tmux.conf ~/.vim/backup
+if ! [ -x "$(command -v cv)" ]; then
+	sudo apt install cdargs silversearcher-ag -y;
+fi
 
-ln -s ~/.vim/vimrc ~/.vimrc
-ln -s ~/.vim/gvimrc ~/.gvimrc
-ln -s ~/.vim/ackrc ~/.ackrc
-ln -s ~/.vim/jshintrc ~/.jshintrc
-ln -s ~/.vim/gitconfig ~/.gitconfig
-ln -s ~/.vim/git-prompt.conf ~/.git-prompt.conf
-ln -s ~/.vim/bash_profile ~/.bash_profile
-ln -s ~/.vim/zshrc ~/.zshrc
-ln -s ~/.vim/tmux.conf ~/.tmux.conf
-# ln -s ~/.vim/voom_mode_greg.py ~/.vim/bundle/VOoM/plugin/voom/voom_mode_greg.py
 
-vim +BundleInstall +qall
+command -v curl >/dev/null 2>&1 || { echo "I require curl but it's not installed.  Aborting." >&2; exit 1; }
 
-which apt-get && apt-get install -y silversearcher-ag git npm
+if ! [ -x "$(command -v nix-env)" ]; then
+	curl https://nixos.org/nix/install | sh
+	source ~/.nix-profile/etc/profile.d/nix.sh 
+fi
+
+if ! [ -x "$(command -v git)" ]; then
+	sudo apt install -y git
+fi
+
+if ! [ -x "$(command -v tree)" ]; then
+	nix-env -i vim tmux entr stow tree
+fi
+
+if [ ! -d ~/dotfiles/original ]; then
+	mkdir -p ~/dotfiles/original;
+	# cp ~/.* ~/dotfiles/original/
+	find ~ -maxdepth 1 -type f | grep '/\.' | xargs -I {} cp {} ~/dotfiles/original
+fi
+
+if [ ! -d ~/.zprezto ]; then
+	command -v git >/dev/null 2>&1 || { echo "I require git but it's not installed.  Aborting." >&2; exit 1; }
+  sudo apt install -y zsh
+  chsh -s `which zsh`
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+fi
+
+
+if [ ! -d ~/.stow-complete ]; then
+	command -v stow >/dev/null 2>&1 || { echo "I require stow but it's not installed.  Aborting." >&2; exit 1; }
+	cd `dirname $0`
+	stow ack git js tmux vim zsh;
+	touch ~/.stow-complete;
+fi
+
+if [ ! -d ~/.vim/bundle ]; then
+	mkdir -p ~/.vim/bundle
+  mkdir -p ~/.vim/backup
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +BundleInstall +qall
+fi
 
 # npm install -g watchy
-which brew && brew install npm tmux vim chromedriver
-which brew && brew install git cdargs reattach-to-user-namespace the_silver_searcher ctags npm
+# which brew && brew install npm chromedriver
+# which brew && brew install git reattach-to-user-namespace ctags npm
+
 # install
 # iterm2
 # skype
@@ -40,3 +75,19 @@ which brew && brew install git cdargs reattach-to-user-namespace the_silver_sear
 # sudo ln -s /usr/bin/node{js,}
 
 # [sudo] npm install -g js-beautify
+
+
+# sudo apt remove dell-super-key
+# sudo apt install compizconfig-settings-manager
+# rm -rf /usr/share/gconf/defaults/40_oem-superkey-workaround 
+# sudo rm -rf /usr/share/gconf/defaults/40_oem-superkey-workaround
+# reboot
+
+# install workrave
+# tree -a -I .git
+
+# sudo groupadd docker
+# sudo usermod -aG docker $USER
+# logout and back in to force reevaluation of group membership
+
+# nix-env -i htop atop iotop iftop

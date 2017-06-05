@@ -48,7 +48,7 @@ fi
 if [ ! -d ~/.stow-complete ]; then
 	command -v stow >/dev/null 2>&1 || { echo "I require stow but it's not installed.  Aborting." >&2; exit 1; }
 	cd `dirname $0`
-	stow ack git js tmux vim zsh;
+	stow ack git js tmux vim zsh prezto;
 	touch ~/.stow-complete;
 fi
 

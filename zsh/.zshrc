@@ -10,20 +10,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' # 'id_dsa' 'id_github'
-zstyle ':prezto:load' pmodule 'environment' 'ssh'
+# If I could disable Ctrl-s completely I would!
+setopt NO_FLOW_CONTROL
 
 # Customize to your needs...
 
 # don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
-setopt INC_APPEND_HISTORY
+# setopt INC_APPEND_HISTORY
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# HISTSIZE=1000
+# HISTFILESIZE=2000
 
 
 
@@ -66,7 +66,7 @@ export GIT_PS1_SHOWUPSTREAM="git"
 # export GIT_PS1_SHOWUNTRACKEDFILES=on
 
 # [ -f ~/git-completion.bash ] && source ~/git-completion.bash
-[ -f ~/git-completion.zsh ] && source ~/git-completion.zsh
+# [ -f ~/git-completion.zsh ] && source ~/git-completion.zsh
 
 # Git prompt
 [[ $- == *i* ]]   &&   . ~/.git-prompt.sh

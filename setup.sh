@@ -11,9 +11,14 @@ if ! [ -x "$(command -v curl)" ]; then
 	sudo apt install curl -y
 fi
 
-if ! [ -x "$(command -v cv)" ]; then
-	sudo apt install cdargs silversearcher-ag -y;
+if ! [ -x "$(command -v ag)" ]; then
+	# sudo apt install silversearcher-ag -y;
+  nix-env -i silver-searcher
 fi
+
+# if ! [ -x "$(command -v cv)" ]; then
+# 	sudo apt install cdargs -y;
+# fi
 
 
 command -v curl >/dev/null 2>&1 || { echo "I require curl but it's not installed.  Aborting." >&2; exit 1; }
@@ -24,7 +29,8 @@ if ! [ -x "$(command -v nix-env)" ]; then
 fi
 
 if ! [ -x "$(command -v git)" ]; then
-	sudo apt install -y git
+	# sudo apt install -y git
+  nix-env -i git
 fi
 
 if ! [ -x "$(command -v tree)" ]; then
@@ -39,7 +45,8 @@ fi
 
 if [ ! -d ~/.zprezto ]; then
 	command -v git >/dev/null 2>&1 || { echo "I require git but it's not installed.  Aborting." >&2; exit 1; }
-  sudo apt install -y zsh
+  # sudo apt install -y zsh
+  nix-env -i zsh
   chsh -s `which zsh`
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
@@ -91,3 +98,5 @@ fi
 # logout and back in to force reevaluation of group membership
 
 # nix-env -i htop atop iotop iftop
+
+# nix-env -i skype

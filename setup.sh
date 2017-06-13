@@ -6,9 +6,18 @@ set -euxo pipefail
 # zsh / prezto: https://github.com/sorin-ionescu/prezto
 # nix-env -qa whatever
 
+
+
 if ! [ -x "$(command -v curl)" ]; then
 	sudo apt update
 	sudo apt install curl -y
+fi
+
+command -v curl >/dev/null 2>&1 || { echo "I require curl but it's not installed.  Aborting." >&2; exit 1; }
+
+if ! [ -x "$(command -v nix-env)" ]; then
+	curl https://nixos.org/nix/install | sh
+	source ~/.nix-profile/etc/profile.d/nix.sh
 fi
 
 if ! [ -x "$(command -v ag)" ]; then
@@ -20,13 +29,6 @@ fi
 # 	sudo apt install cdargs -y;
 # fi
 
-
-command -v curl >/dev/null 2>&1 || { echo "I require curl but it's not installed.  Aborting." >&2; exit 1; }
-
-if ! [ -x "$(command -v nix-env)" ]; then
-	curl https://nixos.org/nix/install | sh
-	source ~/.nix-profile/etc/profile.d/nix.sh 
-fi
 
 if ! [ -x "$(command -v git)" ]; then
 	# sudo apt install -y git

@@ -49,7 +49,9 @@ if [ ! -d ~/.zprezto ]; then
 	command -v git >/dev/null 2>&1 || { echo "I require git but it's not installed.  Aborting." >&2; exit 1; }
   # sudo apt install -y zsh
   nix-env -i zsh
-  chsh -s `which zsh`
+  echo "/home/greg/.nix-profile/bin/zsh" | sudo cat >> /etc/shells
+  #chsh -s `which zsh`
+  chsh -s ~/.nix-profile/bin/zsh
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 

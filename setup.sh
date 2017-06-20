@@ -41,6 +41,7 @@ if [ git remote -v | grep https ]; then
   git remote set-url origin git@github.com:greglearns/dotfiles.git
 fi
 
+
 if ! [ -x "$(command -v tree)" ]; then
 	nix-env -i vim tmux entr stow tree
 fi
@@ -76,13 +77,25 @@ if [ ! -d ~/.vim/bundle ]; then
 	vim +BundleInstall +qall
 fi
 
+if ! [ -x "$(command -v xsel)" ]; then
+  nix-env -i xsel-unstable-2016-09-02
+fi
+
+if ! [ -x "$(command -v htop)" ]; then
+  nix-env -i htop atop iotop iftop
+fi
 
 if [ ! -d ~/.ssh ]; then
   ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
+  xsel -b < ~/.ssh/id_rsa.pub
+  chromium-browser https://github.com/settings/keys
+  chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
 fi
 
-if ! [ -x "$(command -v xsel)" ]; then
-  nix-env -i xsel-unstable-2016-09-02
+if groups | grep -v docker; then
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  # logout and back in to force reevaluation of group membership
 fi
 
 
@@ -113,10 +126,8 @@ fi
 # install workrave
 # tree -a -I .git
 
-# sudo groupadd docker
-# sudo usermod -aG docker $USER
-# logout and back in to force reevaluation of group membership
-
-# nix-env -i htop atop iotop iftop
-
 # nix-env -i skype
+
+# --- remap capslock to control
+# edit /etc/default/keyboard
+# set:  XKBOPTIONS="ctrl:nocaps"

@@ -35,6 +35,12 @@ if ! [ -x "$(command -v git)" ]; then
   nix-env -i git
 fi
 
+cd ~/dotfiles
+if [ git remote -v | grep https ]; then
+  echo "fixing up remote origin to ssh"
+  git remote set-url origin git@github.com:greglearns/dotfiles.git
+fi
+
 if ! [ -x "$(command -v tree)" ]; then
 	nix-env -i vim tmux entr stow tree
 fi
@@ -69,6 +75,16 @@ if [ ! -d ~/.vim/bundle ]; then
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +BundleInstall +qall
 fi
+
+
+if [ ! -d ~/.ssh ]; then
+  ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
+fi
+
+if ! [ -x "$(command -v xsel)" ]; then
+  nix-env -i xsel-unstable-2016-09-02
+fi
+
 
 # npm install -g watchy
 # which brew && brew install npm chromedriver

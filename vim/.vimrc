@@ -21,8 +21,8 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 " original repos on github
-Plugin 'bitc/vim-hdevtools'
-Plugin 'rizzatti/dash.vim'
+" Plugin 'bitc/vim-hdevtools'
+" Plugin 'rizzatti/dash.vim'
 Plugin 'elzr/vim-json'
 Plugin 'rust-lang/rust.vim'
 " Plugin 'eagletmt/ghcmod-vim'
@@ -32,21 +32,21 @@ Plugin 'mbbill/undotree'
 Plugin 'raimondi/delimitMate'
 Plugin 'elmcast/elm-vim'
 Plugin 'mattn/emmet-vim.git'
-Plugin 'raichoo/purescript-vim'
-Plugin 'frigoeu/psc-ide-vim'
+" Plugin 'raichoo/purescript-vim'
+" Plugin 'frigoeu/psc-ide-vim'
 Plugin 'pangloss/vim-javascript.git'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'cakebaker/scss-syntax.vim.git'
+" Plugin 'cakebaker/scss-syntax.vim.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-abolish'
 " Plugin 'mkitt/browser-refresh.vim'
 Plugin 'gmarik/ide-popup.vim'
-Plugin 'gmarik/github-search.vim'
+" Plugin 'gmarik/github-search.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'avakhov/vim-yaml'
 Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
+" Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'brandonbloom/vim-factor'
 " Plugin 'JavaScript-Indent'
@@ -61,10 +61,10 @@ Plugin 'kien/ctrlp.vim'
 " Plugin 'Vitality'
 Plugin 'bufexplorer.zip'
 Plugin 'gitv'
-Plugin 'Gundo'
+" Plugin 'Gundo'
 " Plugin 'Handlebars'
-Plugin 'EasyMotion'
-Plugin 'ZoomWin'
+" Plugin 'EasyMotion'
+" Plugin 'ZoomWin'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
 
@@ -74,14 +74,14 @@ filetype plugin indent on    " required
 
 " --- SETTINGS for vundle installs begin -----
 let g:vim_json_syntax_conceal = 0
-let g:RefreshRunningBrowserDefault = 'chrome'
+" let g:RefreshRunningBrowserDefault = 'chrome'
 let g:rustfmt_autosave = 1
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 1
 let g:psc_ide_syntastic_mode = 1
 
-map <silent><leader>r :RRB<CR>
-imap \r <Esc>:RRB<CR>i
+" map <silent><leader>r :RRB<CR>
+" imap \r <Esc>:RRB<CR>i
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]((\.(git|hg|svn))|elm-stuff)$',
@@ -109,10 +109,11 @@ if has('autocmd')
 endif
 
 
-inoremap <Tab> <Esc>`^
-nnoremap <Tab> <Esc>i<Esc>
+" inoremap <Tab> <Esc>`^
+" nnoremap <Tab> <Esc>i<Esc>
+" inoremap <Leader><Tab> <Tab>
+
 " nnoremap <Tab> <Esc>`^i<Esc>`^
-inoremap <Leader><Tab> <Tab>
 
 " vmap <C-x> :!pbcopy<CR>
 " vmap <C-c> :w !pbcopy<CR><CR>
@@ -130,13 +131,12 @@ function! WrapForTmux(s)
   return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
 endfunction
 
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" function! XTermPasteBegin()
+"   set pastetoggle=<Esc>[201~
+"   set paste
+"   return ""
+" endfunction
+" inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 
 
@@ -170,7 +170,7 @@ set mouse=a
 autocmd InsertEnter * set cursorline
 autocmd InsertLeave * set nocursorline
 
-nnoremap <F5> :GundoToggle<CR> " http://sjl.bitbucket.org/gundo.vim/
+" nnoremap <F5> :GundoToggle<CR> " http://sjl.bitbucket.org/gundo.vim/
 
 " jump to first word-letter within the first column
 " ?\%1c\w
@@ -186,7 +186,7 @@ noremap ;; ;
 map ; :
 
 " edit command-line
-map q; q:
+" map q; q:
 " word completion
 imap jj <C-n>
 
@@ -194,15 +194,19 @@ imap jj <C-n>
 imap \t <Esc><c-p>
 
 " scratch buffer
-map <Leader>scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
+" map <Leader>scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
 
 " make Ack easier to access
 nnoremap <Leader>a :Ag
 " ack for current selection
 vmap <Leader>a "sy:Ag! "<C-R>""
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " ZoomWin
-nnoremap <Leader>z :ZoomWin<cr>
+" nnoremap <Leader>z :ZoomWin<cr>
 
 " keep searches away from the edge
 " set scrolloff=1
@@ -213,11 +217,11 @@ nmap <C-J> <C-w>j<C-w>=
 nmap <C-K> <C-w>k<C-w>=
 nmap <C-L> <C-w>l<C-w>=
 
-" close the window to the left of this one
-noremap <silent> <Leader>hc :wincmd h<cr>:close<cr>
-noremap <silent> <Leader>lc :wincmd l<cr>:close<cr>
-noremap <silent> <Leader>kc :wincmd k<cr>:close<cr>
-noremap <silent> <Leader>jc :wincmd j<cr>:close<cr>
+" " close the window to the left of this one
+" noremap <silent> <Leader>hc :wincmd h<cr>:close<cr>
+" noremap <silent> <Leader>lc :wincmd l<cr>:close<cr>
+" noremap <silent> <Leader>kc :wincmd k<cr>:close<cr>
+" noremap <silent> <Leader>jc :wincmd j<cr>:close<cr>
 
 " shortcut for Gdiff
 " nnoremap :gd :Gdiff
@@ -491,7 +495,7 @@ autocmd FileType haskell,c,cpp,elm,purs,js,javascript,java,php,ruby,python autoc
 
 " taken from https://coderwall.com/p/m2kp5q
 " first install with npm install -g js-beautify
-nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
+" nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
 
 if !empty(glob("src/Main.elm"))
   argadd src/*.elm

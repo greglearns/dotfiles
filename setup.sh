@@ -2,11 +2,9 @@
 set -euxo pipefail
 
 # DO THESE FIRST
-# git clone https://github.com/greglearns/dotfiles.git ~/dotfiles
-# zsh / prezto: https://github.com/sorin-ionescu/prezto
-# nix-env -qa whatever
-
-
+# log in to github and bitbucket
+# download and unzip https://github.com/greglearns/dotfiles.git somewhere other than ~/dotfiles
+# cd <dir>; ./setup.sh
 
 if ! [ -x "$(command -v curl)" ]; then
 	sudo apt update
@@ -20,19 +18,25 @@ if ! [ -x "$(command -v nix-env)" ]; then
 	source ~/.nix-profile/etc/profile.d/nix.sh
 fi
 
-if ! [ -x "$(command -v ag)" ]; then
-	# sudo apt install silversearcher-ag -y;
-  nix-env -i silver-searcher
-fi
-
-# if ! [ -x "$(command -v cv)" ]; then
-# 	sudo apt install cdargs -y;
-# fi
-
-
 if ! [ -x "$(command -v git)" ]; then
 	# sudo apt install -y git
   nix-env -i git
+fi
+
+if ! [ -x "$(command -v xsel)" ]; then
+  nix-env -i xsel-unstable-2016-09-02
+fi
+
+if [ ! -d ~/.ssh ]; then
+  ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
+  xsel -b < ~/.ssh/id_rsa.pub
+  chromium-browser https://github.com/settings/keys
+  chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
+  read -p "Press [Enter] after SSH key is installed in Github and BitBucket."
+fi
+
+if [ ! -d ~/dotfiles ]; then
+  git clone git@github.com:greglearns/dotfiles.git ~/dotfiles
 fi
 
 cd ~/dotfiles
@@ -40,7 +44,6 @@ if [ git remote -v | grep https ]; then
   echo "fixing up remote origin to ssh"
   git remote set-url origin git@github.com:greglearns/dotfiles.git
 fi
-
 
 if ! [ -x "$(command -v tree)" ]; then
 	nix-env -i vim tmux entr stow tree
@@ -56,9 +59,9 @@ if [ ! -d ~/.zprezto ]; then
 	command -v git >/dev/null 2>&1 || { echo "I require git but it's not installed.  Aborting." >&2; exit 1; }
   # sudo apt install -y zsh
   nix-env -i zsh
-  echo "/home/greg/.nix-profile/bin/zsh" | sudo cat >> /etc/shells
+  echo "${HOME}/.nix-profile/bin/zsh" | sudo cat >> /etc/shells
   #chsh -s `which zsh`
-  chsh -s ~/.nix-profile/bin/zsh
+  chsh -s "${HOME}/.nix-profile/bin/zsh"
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 
@@ -70,6 +73,11 @@ if [ ! -d ~/.stow-complete ]; then
 	touch ~/.stow-complete;
 fi
 
+if ! [ -x "$(command -v ag)" ]; then
+	# sudo apt install silversearcher-ag -y;
+  nix-env -i silver-searcher
+fi
+
 if [ ! -d ~/.vim/bundle ]; then
 	mkdir -p ~/.vim/bundle
   mkdir -p ~/.vim/backup
@@ -77,19 +85,8 @@ if [ ! -d ~/.vim/bundle ]; then
 	vim +BundleInstall +qall
 fi
 
-if ! [ -x "$(command -v xsel)" ]; then
-  nix-env -i xsel-unstable-2016-09-02
-fi
-
 if ! [ -x "$(command -v htop)" ]; then
   nix-env -i htop atop iotop iftop
-fi
-
-if [ ! -d ~/.ssh ]; then
-  ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
-  xsel -b < ~/.ssh/id_rsa.pub
-  chromium-browser https://github.com/settings/keys
-  chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
 fi
 
 if groups | grep -v docker; then

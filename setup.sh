@@ -34,7 +34,9 @@ if ! [ -x "$(command -v xsel)" ]; then
 fi
 
 if [ ! -d ~/.ssh ]; then
-  ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
+  read -p "Enter your email address for the SSH key: " email
+  ssh-keygen -t rsa -b 4096 -C $email
+  # ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
   xsel -b < ~/.ssh/id_rsa.pub
   chromium-browser https://github.com/settings/keys
   chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
@@ -164,7 +166,11 @@ if !  grep nocaps /etc/default/keyboard; then
   sudo sed -i 's/XKBOPTIONS=""/XKBOPTIONS="ctrl:nocaps"/' /etc/default/keyboard
 fi
 
-
+# if [ ! -f ~/.config/nixpkgs/overlays/rust-overlay.nix ]; then
+#   git clone https://github.com/mozilla/nixpkgs-mozilla.git ~/nixpkgs-mozilla
+#   mkdir -p ~/.config/nixpkgs/overlays
+#   ln -s $(pwd)/nixpkgs-mozilla/rust-overlay.nix ~/.config/nixpkgs/overlays/rust-overlay.nix
+# fi
 
 # if [ ! -f ~/.config/nixpkgs/config.nix ]; then
 #   mkdir -p ~/.config/nixpkgs || true

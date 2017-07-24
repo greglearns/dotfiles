@@ -198,9 +198,9 @@ imap \t <Esc><c-p>
 " map <Leader>scratch <Esc>:e scratch<CR>:set buftype=nofile<CR>:set bufhidden=hide<CR>:setlocal noswapfile<CR>
 
 " make Ack easier to access
-nnoremap <Leader>a :Ag
+nnoremap <Leader>a :Ack
 " ack for current selection
-vmap <Leader>a "sy:Ag! "<C-R>""
+vmap <Leader>a "sy:Ack! "<C-R>""
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'

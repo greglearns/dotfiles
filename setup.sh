@@ -6,7 +6,7 @@ set -euxo pipefail
 # download and unzip https://github.com/greglearns/dotfiles.git somewhere other than ~/dotfiles
 # cd <dir>; ./setup.sh
 
-LALA=$(sudo dmidecode | grep Dell > /dev/null)
+LALA=[ -x "$(command -v dmidecode)" ] && $(sudo dmidecode | grep Dell > /dev/null)
 ISDELL=$?
 
 if ! [ -x "$(command -v curl)" ]; then
@@ -21,25 +21,29 @@ if [ ! -d ~/.nix-profile ]; then
 fi
 
 if ! [ -x "$(command -v nix-env)" ]; then
-  source ~/.nix-profile/etc/profile.d/nix.sh
+  if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then source ~/.nix-profile/etc/profile.d/nix.sh; fi
+  if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh; fi
 fi
 
 if ! [ -x "$(command -v git)" ]; then
-  # sudo apt install -y git
   nix-env -i git
 fi
 
 if ! [ -x "$(command -v xsel)" ]; then
-  nix-env -i xsel-unstable-2016-09-02
+  if [[ $ISDELL ]]; then nix-env -i xsel-unstable-2016-09-02; fi
 fi
 
 if [ ! -d ~/.ssh ]; then
   read -p "Enter your email address for the SSH key: " email
   ssh-keygen -t rsa -b 4096 -C $email
   # ssh-keygen -t rsa -b 4096 -C "greg@greglearns.com"
-  xsel -b < ~/.ssh/id_rsa.pub
-  chromium-browser https://github.com/settings/keys
-  chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
+  if [ -x "$(command -v xsel)" ]; then
+    xsel -b < ~/.ssh/id_rsa.pub
+    chromium-browser https://github.com/settings/keys
+    chromium-browser https://bitbucket.org/account/user/greglearns/ssh-keys/
+  else
+    pbcopy < ~/.ssh/id_rsa.pub
+  fi
   read -p "Press [Enter] after SSH key is installed in Github and BitBucket."
 fi
 
@@ -101,7 +105,7 @@ if ! [ -x "$(command -v htop)" ]; then
   nix-env -i htop atop iotop iftop
 fi
 
-if ! [ -x "$(command -v xdotool)" ]; then
+if [[ $ISDELL ]] && ! [ -x "$(command -v xdotool)" ]; then
   nix-env -i xdotool
 fi
 
@@ -114,21 +118,28 @@ if ! [ -x "$(command -v docker)" ]; then
   # sudo /home/greg/.nix-profile/bin/dockerd
 fi
 
-if ! [ -x "$(command -v postgres)" ]; then
-  nix-env -i postgresql-9.6.2
-  echo "host    all             all             0.0.0.0/0            trust" | tee -a ~/tmp/pgdata/pg_hba.conf
-  echo "listen_addresses = '0.0.0.0'" | tee -a ~/tmp/pgdata/postgresql.conf
-  # https://www.johbo.com/2017/on-demand-postgresql-for-your-development-environment.html
-  # nix-shell -p postgresql
-  # export PGDATA=~/tmp/pgdata
-  # initdb -A trust
-  # pg_ctl start  # OR /home/greg/.nix-profile/bin/pg_ctl -D /home/greg/tmp/pgdata -l logfile start
-  # createdb myproject
-fi
+# if ! [ -x "$(command -v postgres)" ]; then
+#   nix-env -i postgresql-9.6.2
+#   echo "host    all             all             0.0.0.0/0            trust" | tee -a ~/tmp/pgdata/pg_hba.conf
+#   echo "listen_addresses = '0.0.0.0'" | tee -a ~/tmp/pgdata/postgresql.conf
+#   # https://www.johbo.com/2017/on-demand-postgresql-for-your-development-environment.html
+#   # nix-shell -p postgresql
+#   # export PGDATA=~/tmp/pgdata
+#   # initdb -A trust
+#   # pg_ctl start  # OR /home/greg/.nix-profile/bin/pg_ctl -D /home/greg/tmp/pgdata -l logfile start
+#   # createdb myproject
+# fi
 
-if ! [ -x "$(command -v elm-make)" ]; then
-  nix-env -i elm-0.18.0
-fi
+# nix-env -i nixops
+
+# # sudo apt-get update
+# sudo apt-get upgrade
+# sudo apt-get dist-upgrade
+# Then reboot`
+
+# if ! [ -x "$(command -v elm-make)" ]; then
+#   nix-env -i elm-0.18.0
+# fi
 
 
 # npm install -g watchy
@@ -151,9 +162,21 @@ fi
 
 if [[ $ISDELL ]] && [ ! -f /etc/X11/xorg.conf ]; then
   sudo cp ~/dotfiles/etc/X11/xorg.conf /etc/X11/xorg.conf
+
+  sudo add-apt-repository ppa:atareao/atareao
+  sudo apt-get update
+  sudo apt-get install touchpad-indicator
+
+  # http://www.dell.com/support/article/us/en/19/sln306440/xps-13-9360-ubuntu--killer-n1535-wireless-manual-firmware-update?lang=en
+  # curl -L https://github.com/kvalo/ath10k-firmware/archive/master.zip > ~/ath10k.zip
+  # extract here in the file, then...
+  # sudo mv /lib/firmware/ath10k/QCA6174 ~/
+  # sudo mv ~/ath10k-firmware-master/QCA6174 /lib/firmware/ath10k
+  # ls /lib/firmware/ath10k/QCA6174
+  # mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin_WLAN.RM.2.0-00180-QCARMSWPZ-1 /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
 fi
 
-if dpkg -s dell-super-key; then
+if [[ $ISDELL ]] && dpkg -s dell-super-key; then
   # https://www.dell.com/support/article/us/en/19/HOW12108/how-to-enable-the-ubuntu-super-key-on-dell-oem-ubuntu-installations?lang=EN
   sudo apt-get remove -y dell-super-key
   sudo apt-get install compizconfig-settings-manager -y
@@ -162,9 +185,15 @@ if dpkg -s dell-super-key; then
   # then, to fixup touchpad: https://help.ubuntu.com/community/SynapticsTouchpad
 fi
 
-if !  grep nocaps /etc/default/keyboard; then
+if [ -f /etc/default/keyboard ] && ! grep nocaps /etc/default/keyboard; then
   sudo sed -i 's/XKBOPTIONS=""/XKBOPTIONS="ctrl:nocaps"/' /etc/default/keyboard
 fi
+
+if ! [ -x "$(command -v rustup)" ]; then
+  curl https://sh.rustup.rs -sSf | sh
+  cargo install cross
+fi
+
 
 # if [ ! -f ~/.config/nixpkgs/overlays/rust-overlay.nix ]; then
 #   git clone https://github.com/mozilla/nixpkgs-mozilla.git ~/nixpkgs-mozilla
@@ -184,7 +213,7 @@ fi
 # Ubuntu Software
 # dropbox
 # artha
-# gcalculator (for RPN)
+# galculator (for RPN)
 # zeal
 # workrave
 # hexchat
@@ -195,3 +224,5 @@ fi
 
 # hipchat
 # slack
+
+# https://justgetflux.com/linux.html

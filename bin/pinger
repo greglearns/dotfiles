@@ -21,17 +21,6 @@ while [ 1 ]; do
   do_ping
   RESULT=$?
 
-  if [ "$LAST_RESULT" != "$RESULT" ]; then
-    if [[ $RESULT -eq 0 ]]; then
-      echo "--- connected"
-      spd-say $SAY_WHEN_CONNECTED
-    else
-      echo "!!! lost"
-    fi
-    LOST_CNT=0
-  fi
-  LAST_RESULT=$RESULT
-
   # only report "lost" if 2 packets are lost in a row, since sometimes one packet gets lost for no apparent reason.
   if [[ $RESULT -ne 0 ]]; then
     ((LOST_CNT=LOST_CNT+1))
@@ -39,6 +28,32 @@ while [ 1 ]; do
       spd-say $SAY_WHEN_DISCONNECTED
     fi
   fi
+
+  if [[ $RESULT -eq 0 ]]; then
+    ((SUCCESS_CNT=SUCCESS_CNT+1))
+    if [[ $SUCCESS_CNT -eq 1 ]] && [[ $LOST_CNT -eq 0 ]]; then # initial connection upon start
+      spd-say $SAY_WHEN_CONNECTED
+    fi
+    if [[ $SUCCESS_CNT -eq 1 ]] && [[ $LOST_CNT -eq $ONLY_SAY_WHEN_DISCONNECTED_IF_THIS_NUMBER_OF_PINGS_FAIL ]]; then # reconnected for real (not just after 1 lost ping)
+      spd-say $SAY_WHEN_CONNECTED
+    fi
+  fi
+
+  if [ "$LAST_RESULT" != "$RESULT" ]; then
+    if [[ $RESULT -eq 0 ]]; then
+      echo "--- connected"
+      # if [[ LOST_CNT -ge $ONLY_SAY_WHEN_DISCONNECTED_IF_THIS_NUMBER_OF_PINGS_FAIL ]]; then
+        # spd-say $SAY_WHEN_CONNECTED
+      # fi
+      LOST_CNT=0
+      SUCCESS_CNT=1
+    else
+      echo "!!! lost"
+      LOST_CNT=1
+      SUCCESS_CNT=0
+    fi
+  fi
+  LAST_RESULT=$RESULT
 
   sleep $SLEEP_TIME
 done

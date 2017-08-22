@@ -8,6 +8,7 @@ set -euxo pipefail
 
 LALA=[ -x "$(command -v dmidecode)" ] && $(sudo dmidecode | grep Dell > /dev/null)
 ISDELL=$?
+echo ISDELL is "$ISDELL"
 
 if ! [ -x "$(command -v curl)" ]; then
   sudo apt update
@@ -16,13 +17,14 @@ fi
 
 command -v curl >/dev/null 2>&1 || { echo "I require curl but it's not installed.  Aborting." >&2; exit 1; }
 
-if [ ! -d ~/.nix-profile ]; then
-  curl https://nixos.org/nix/install | sh
+if [ ! -d ~/.nix-profile ] && [ ! -f ~/.nix-profile ]; then
+  echo installing nix
+  # curl https://nixos.org/nix/install | sh
 fi
 
 if ! [ -x "$(command -v nix-env)" ]; then
   if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then source ~/.nix-profile/etc/profile.d/nix.sh; fi
-  if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh; fi
+  # if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh || true; fi
 fi
 
 if ! [ -x "$(command -v git)" ]; then
@@ -59,6 +61,14 @@ fi
 
 if ! [ -x "$(command -v tree)" ]; then
   nix-env -i vim tmux entr stow tree
+fi
+
+if ! [ -x "$(command -v jq)" ]; then
+  nix-env -i jq
+fi
+
+if ! [ -x "$(command -v http)" ]; then
+  nix-env -i httpie
 fi
 
 if [ ! -d ~/dotfiles/original ]; then
@@ -102,16 +112,18 @@ if [ ! -d ~/.vim/bundle ]; then
 fi
 
 if ! [ -x "$(command -v htop)" ]; then
-  nix-env -i htop atop iotop iftop
+  nix-env -i htop
+  # nix-env -i atop iotop iftop
 fi
 
-if [[ $ISDELL ]] && ! [ -x "$(command -v xdotool)" ]; then
+if $ISDELL && ! [ -x "$(command -v xdotool)" ]; then
   nix-env -i xdotool
 fi
 
 if ! [ -x "$(command -v docker)" ]; then
   sudo groupadd docker || true
-  sudo usermod -aG docker $USER
+  # sudo usermod -aG docker $USER
+  sudo dseditgroup -o edit -a $USER -t user docker
   # logout and back in to force reevaluation of group membership
   nix-env -i docker-17.05.0-ce
   nix-env -i docker-compose-1.13.0
@@ -142,7 +154,8 @@ fi
 # fi
 
 
-# npm install -g watchy
+# install brew
+
 # which brew && brew install npm chromedriver
 # which brew && brew install git reattach-to-user-namespace ctags npm
 
@@ -160,7 +173,7 @@ fi
 # [sudo] npm install -g js-beautify
 
 
-if [[ $ISDELL ]] && [ ! -f /etc/X11/xorg.conf ]; then
+if $ISDELL && [ ! -f /etc/X11/xorg.conf ]; then
   sudo cp ~/dotfiles/etc/X11/xorg.conf /etc/X11/xorg.conf
 
   sudo add-apt-repository ppa:atareao/atareao
@@ -176,7 +189,7 @@ if [[ $ISDELL ]] && [ ! -f /etc/X11/xorg.conf ]; then
   # mv /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin_WLAN.RM.2.0-00180-QCARMSWPZ-1 /lib/firmware/ath10k/QCA6174/hw3.0/firmware-4.bin
 fi
 
-if [[ $ISDELL ]] && dpkg -s dell-super-key; then
+if $ISDELL && dpkg -s dell-super-key; then
   # https://www.dell.com/support/article/us/en/19/HOW12108/how-to-enable-the-ubuntu-super-key-on-dell-oem-ubuntu-installations?lang=EN
   sudo apt-get remove -y dell-super-key
   sudo apt-get install compizconfig-settings-manager -y

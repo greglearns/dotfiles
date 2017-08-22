@@ -110,6 +110,7 @@ if has('autocmd')
 endif
 
 
+inoremap <Tab> <C-o>
 " inoremap <Tab> <Esc>`^
 " nnoremap <Tab> <Esc>i<Esc>
 " inoremap <Leader><Tab> <Tab>
@@ -244,6 +245,7 @@ nnoremap :du :diffupdate
 "Ever notice a slight lag after typing the leader key + command? This lowers
 "the timeout.
 set timeoutlen=500
+" set timeout timeoutlen=500 ttimeoutlen=100
 
 "Prefer relative line numbering?
 "set relativenumber"

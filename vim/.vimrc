@@ -49,6 +49,7 @@ Plugin 'avakhov/vim-yaml'
 Plugin 'mileszs/ack.vim'
 " Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'rjayatilleka/vim-insert-char'
 " Plugin 'brandonbloom/vim-factor'
 " Plugin 'JavaScript-Indent'
 " Plugin 'maxmeyer/vim-taskjuggler'
@@ -110,8 +111,8 @@ if has('autocmd')
 endif
 
 
-inoremap <Tab> <C-o>
-" inoremap <Tab> <Esc>`^
+" inoremap <Tab> <C-o>
+inoremap <Tab> <Esc>`^
 " nnoremap <Tab> <Esc>i<Esc>
 " inoremap <Leader><Tab> <Tab>
 

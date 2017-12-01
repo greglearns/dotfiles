@@ -60,7 +60,7 @@ if [ git remote -v | grep https ]; then
 fi
 
 if ! [ -x "$(command -v tree)" ]; then
-  nix-env -i vim tmux entr stow tree
+  nix-env -i vim tmux entr stow tree fd fzf ripgrep
 fi
 
 if ! [ -x "$(command -v jq)" ]; then

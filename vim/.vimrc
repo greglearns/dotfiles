@@ -26,6 +26,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'elzr/vim-json'
 Plugin 'rust-lang/rust.vim'
 Plugin 'LnL7/vim-nix'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'Shougo/vimproc.vim'
 " Plugin 'elm.vim'
@@ -48,7 +50,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'avakhov/vim-yaml'
 Plugin 'mileszs/ack.vim'
 " Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'rjayatilleka/vim-insert-char'
 " Plugin 'brandonbloom/vim-factor'
 " Plugin 'JavaScript-Indent'
@@ -75,6 +77,13 @@ filetype plugin indent on    " required
 " --- vundle end -----
 
 " --- SETTINGS for vundle installs begin -----
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,nix,rs}"
+  \ -g "!{.git,node_modules,vendor,target,result}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
 let g:vim_json_syntax_conceal = 0
 " let g:RefreshRunningBrowserDefault = 'chrome'
 let g:rustfmt_autosave = 1
@@ -85,11 +94,11 @@ let g:psc_ide_syntastic_mode = 1
 " map <silent><leader>r :RRB<CR>
 " imap \r <Esc>:RRB<CR>i
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]((\.(git|hg|svn))|elm-stuff)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]((\.(git|hg|svn))|elm-stuff)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
 
 " let g:FactorRoot = '/Users/greg/project/factor'
 
@@ -208,6 +217,13 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  let g:ackprg = 'rg --vimgrep --no-heading'
+endif
+
+
 " ZoomWin
 " nnoremap <Leader>z :ZoomWin<cr>
 
@@ -292,8 +308,8 @@ nnoremap <leader>ft Vatzf
 " call ToggleEnterMapping()
 " inoremap <expr> <S-CR> ToggleEnterMapping()
 " Optional (so <CR> cancels prefix, selection, operator).
-inoremap <CR> <Esc>
 inoremap <Leader><CR> <CR>
+" inoremap <CR> <Esc>
 " inoremap <CR> <Esc>`^
 vnoremap <CR> <Esc>gV
 onoremap <CR> <Esc>
@@ -389,7 +405,11 @@ map <Leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" nmap <C-p> :Files<CR>
+nmap <leader>f :Files<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>l :BLines<CR>
 
 " Unimpaired configuration
 " Bubble single lines
@@ -502,10 +522,10 @@ autocmd FileType haskell,c,cpp,elm,purs,js,javascript,java,php,ruby,python autoc
 " nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
 
 if !empty(glob("src/Main.elm"))
-  argadd src/*.elm
+  argadd src/**/*.elm
 endif
 
 if !empty(glob("src/main.rs")) || !empty(glob("src/lib.rs"))
-  argadd src/*.rs
+  argadd src/**/*.rs
 endif
 

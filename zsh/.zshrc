@@ -100,4 +100,9 @@ fi
 
 if [ -e /Users/greg/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/greg/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_COMMAND='rg --hidden --follow --glob "!.git/*" -g "!target/*"'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
+export CDPATH=.:~/cdf
+setopt CHASE_LINKS

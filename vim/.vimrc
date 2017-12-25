@@ -271,7 +271,7 @@ set timeoutlen=500
 set foldenable
 
 "Shortcut to fold tags with leader (usually \) + ft
-nnoremap <leader>ft Vatzf
+" nnoremap <leader>ft Vatzf
 
 " More useful command-line completion
 " set wildmenu

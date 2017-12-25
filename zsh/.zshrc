@@ -32,6 +32,7 @@ export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$HOME/.local/bin:$P
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
+alias fzfp="fzf --preview 'cat {}'"
 alias tre="tree -a -nI '.git|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps'"
 # alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 # alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"

@@ -33,12 +33,12 @@ export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$HOME/.local/bin:$P
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
 alias fzfp="fzf --preview 'cat {}'"
-alias tre="tree -a -nI '.git|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps'"
+alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps'"
 # alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 # alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"
 alias dcc="docker-compose"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
-
+alias changelog="conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
 alias rm="nocorrect rm"
 unsetopt correct
 
@@ -99,7 +99,7 @@ fi
 # if [ -f ~/.bashrc ]; then . ~/.bashrc ; fi
 # [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
-if [ -e /Users/greg/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/greg/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# if [ -e /Users/greg/.n ix-profile/etc/profile.d/n ix.sh ]; then . /Users/greg/.n ix-profile/etc/profile.d/n ix.sh; fi # added by Nix installer
 
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_COMMAND='rg --hidden --follow --glob "!.git/*" -g "!target/*"'

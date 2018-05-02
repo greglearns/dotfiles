@@ -239,3 +239,9 @@ fi
 # slack
 
 # https://justgetflux.com/linux.html
+
+brew install npm
+npm install -g commitizen
+npm install -g cz-conventional-changelog
+# npm install -g conventional-changelog-cli
+cargo install clog-cli

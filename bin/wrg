@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Linx:
+# rg 'foo' --files-with-matches | xargs sed -i 's/foo/bar/g'
+# (BSD sed) <-- this includes OSx
+# rg 'foo' --files-with-matches | xargs sed -i '' 's/foo/bar/g'
+
+
 # USAGE
 # rg something
 # rg something --replace SOMETHING

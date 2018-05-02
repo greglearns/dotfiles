@@ -3,6 +3,7 @@
 if which osascript > /dev/null; then
   TYPE=${1:-Chrome Canary}
   # TYPE=${1:-Chrome}
+  echo refreshing $TYPE
   osascript -e "tell application \"Google $TYPE\" to tell the active tab of its first window to reload"
 fi
 

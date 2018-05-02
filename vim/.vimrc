@@ -31,6 +31,7 @@ Plugin 'junegunn/fzf.vim'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'Shougo/vimproc.vim'
 " Plugin 'elm.vim'
+Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'mbbill/undotree'
 Plugin 'raimondi/delimitMate'
 Plugin 'elmcast/elm-vim'
@@ -112,6 +113,20 @@ syntax on
 set encoding=utf-8
 
 " --- begin Greg improvements ----------
+
+" Add argument (can be negative, default 1) to global variable i.
+" Return value of i before the change.
+" Examples: :let i = 1 | %s/abc/\='xyz_' . Inc()/g
+" Examples: :let i=100 | :%s/abc/\=Inc(5)/g
+" Examples: :let i = 27764 | %s/auid/\='' . Inc()/g
+function Inc(...)
+  let result = g:i
+  let g:i += a:0 > 0 ? a:1 : 1
+  return result
+endfunction
+
+:nnoremap <F5> "=strftime('%FT%T%z')<CR>P
+:inoremap <F5> <C-R>=strftime('%FT%T%z')<CR>
 
 " turn off annoying beep
 set noerrorbells visualbell t_vb=
@@ -521,11 +536,11 @@ autocmd FileType haskell,c,cpp,elm,purs,js,javascript,java,php,ruby,python autoc
 " first install with npm install -g js-beautify
 " nnoremap <leader>ff :%!js-beautify --indent-size 2 --keep-array-indentation --jslint-happy --preserve-newlines --quiet --break-chained-methods --file -<CR>
 
-if !empty(glob("src/Main.elm"))
-  argadd src/**/*.elm
-endif
+" if !empty(glob("src/Main.elm"))
+"   argadd src/**/*.elm
+" endif
 
-if !empty(glob("src/main.rs")) || !empty(glob("src/lib.rs"))
-  argadd src/**/*.rs
-endif
+" if !empty(glob("src/main.rs")) || !empty(glob("src/lib.rs"))
+"   argadd src/**/*.rs
+" endif
 

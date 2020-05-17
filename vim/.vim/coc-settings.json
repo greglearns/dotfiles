@@ -1,0 +1,14 @@
+{
+  "suggest.autoTrigger": "none",
+  "coc.preferences.formatOnSaveFiletypes": ["elm"],
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  }
+}

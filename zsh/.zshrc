@@ -26,20 +26,25 @@ setopt NO_FLOW_CONTROL
 # HISTFILESIZE=2000
 
 
+smartresize() {
+   mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
+}
 
 export PATH="$HOME/lib:$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin"
 export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$HOME/.local/bin:$PATH"
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
-alias fzfp="fzf --preview 'cat {}'"
-alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps'"
-# alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 # alias fan="echo && /Users/greg/.rbenv/versions/2.1.0/bin/istats all && echo && date && echo"
-alias dcc="docker-compose"
-alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
+# alias istat="/Users/greg/.rbenv/versions/2.1.0/bin/istats"
 alias changelog="conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+alias dcc="docker-compose"
+alias fzfp="fzf --preview 'cat {}'"
 alias rm="nocorrect rm"
+alias rm="nocorrect rm"
+alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
+alias tim="date; timer"
+alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps|.cache'"
 unsetopt correct
 
 # autoload -U zmv
@@ -50,7 +55,7 @@ export HOSTNAME=${HOST}
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 export KOPS_STATE_STORE=s3://clusters.dev.devplan.io
-export AWS_PROFILE=kubernetes
+export AWS_PROFILE=2020dev
 alias k=kubectl
 # alias ka="kubectl --context=us-west-2.dev.devplan.io"
 # alias ka="kubectl get po --all-namespaces"
@@ -107,3 +112,30 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 
 export CDPATH=.:~/cdf
 setopt CHASE_LINKS
+export FEEDACCESS=~/code/searchspring/feedaccess
+
+# export LDFLAGS=-L/usr/local/opt/openssl/lib
+# export CPPFLAGS=-I/usr/local/opt/openssl/include
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/greg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/greg/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/greg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/greg/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Ruby setup
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
+# Java setup
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
+
+# begin timer completion
+. <(timer --completion)
+# end timer completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

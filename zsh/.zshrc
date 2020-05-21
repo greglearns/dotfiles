@@ -45,6 +45,7 @@ alias rm="nocorrect rm"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 alias tim="date; timer"
 alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps|.cache'"
+alias fd=fdfind
 unsetopt correct
 
 # autoload -U zmv
@@ -125,17 +126,20 @@ if [ -f '/Users/greg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/greg/googl
 if [ -f '/Users/greg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/greg/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Ruby setup
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+#source /usr/local/opt/chruby/share/chruby/chruby.sh
+#source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Java setup
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+#export PATH="$HOME/.jenv/bin:$PATH"
+#eval "$(jenv init -)"
 
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 
 # begin timer completion
-. <(timer --completion)
+#. <(timer --completion)
 # end timer completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

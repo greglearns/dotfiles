@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Copy clipboard contents to a temp file
+echo "$1" > /tmp/spell.tmp
+# Run aspell on that file
+aspell check /tmp/spell.tmp
+# Copy the results back to the clipboard
+cat /tmp/spell.tmp | tr -d '\n' | xclip -sel clip
+
+xdotool key --clearmodifiers Ctrl+Shift+Q key --clearmodifiers KP_Enter
+# kill -3 $PPID
+# kill -15 $PPID

@@ -46,6 +46,8 @@ alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 alias tim="date; timer"
 alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps|.cache'"
 alias fd=fdfind
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 unsetopt correct
 
 # autoload -U zmv
@@ -143,3 +145,10 @@ export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+# begin timer completion
+. <(timer --completion)
+# end timer completion

@@ -1,3 +1,4 @@
 #!/bin/bash
 
+# https://www.npmjs.com/package/time-tracker-cli
 timer s "$1"; timer add "$1" "$2"

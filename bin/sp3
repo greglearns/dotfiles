@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Copy clipboard contents to a temp file
+xclip -o > /tmp/spell.tmp
+# Run aspell on that file
+aspell check /tmp/spell.tmp
+# Copy the results back to the clipboard
+cat /tmp/spell.tmp | xclip
+

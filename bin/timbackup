@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# https://www.npmjs.com/package/time-tracker-cli
+OLDPATH="/home/greg/.config/configstore/time-tracker-cli.json"
+NEWPATH="${OLDPATH}.$(date +'%Y-%m-%d.%T')"
+cp $OLDPATH $NEWPATH
+echo $NEWPATH
+

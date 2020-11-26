@@ -16,36 +16,8 @@ set directory=~/.vim/backup
 call plug#begin('~/.vim/bundle')
 " Plugin 'gmarik/Vundle.vim'
 " original repos on github
-Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'LnL7/vim-nix'
-Plug 'racer-rust/vim-racer'
-Plug 'avakhov/vim-yaml'
-" Plug 'elmcast/elm-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'andys8/vim-elm-syntax'
-Plug 'elzr/vim-json'
-Plug 'gmarik/ide-popup.vim'
-Plug 'hjson/vim-hjson'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
-Plug 'mbbill/undotree'
-Plug 'mileszs/ack.vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-" Plug 'sbdchd/neoformat'
-Plug 'prettier/vim-prettier'
-" Plug 'raimondi/delimitMate'
-Plug 'rjayatilleka/vim-insert-char'
-Plug 'rust-lang/rust.vim'
-Plug 'evanleck/vim-svelte'
-" Plug 'scrooloose/syntastic'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
-Plug 'https://gitlab.com/n9n/vim-apl'
 " Plug 'JavaScript-Indent'
+" Plug 'LnL7/vim-nix'
 " Plug 'Lokaltog/powerline'
 " Plug 'Shougo/vimproc.vim'
 " Plug 'bitc/vim-hdevtools'
@@ -55,15 +27,45 @@ Plug 'https://gitlab.com/n9n/vim-apl'
 " Plug 'dart-lang/dart-vim-plugin'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'elm.vim'
+" Plug 'elmcast/elm-vim'
 " Plug 'frigoeu/psc-ide-vim'
 " Plug 'gmarik/github-search.vim'
 " Plug 'kien/ctrlp.vim'
 " Plug 'maxmeyer/vim-taskjuggler'
 " Plug 'mkitt/browser-refresh.vim'
+" Plug 'prettier/vim-prettier'
 " Plug 'raichoo/purescript-vim'
+" Plug 'raimondi/delimitMate'
 " Plug 'rizzatti/dash.vim'
 " Plug 'rking/ag.vim'
 " Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plug 'sbdchd/neoformat'
+" Plug 'scrooloose/syntastic'
+Plug 'vmware/differential-datalog', { 'rtp':'tools/vim' }
+Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'andys8/vim-elm-syntax'
+Plug 'avakhov/vim-yaml'
+Plug 'elzr/vim-json'
+Plug 'evanleck/vim-svelte'
+Plug 'gmarik/ide-popup.vim'
+Plug 'hjson/vim-hjson'
+Plug 'https://gitlab.com/n9n/vim-apl'
+Plug 'jreybert/vimagit'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+Plug 'mileszs/ack.vim'
+Plug 'mxw/vim-jsx'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pangloss/vim-javascript'
+" Plug 'racer-rust/vim-racer'
+Plug 'rjayatilleka/vim-insert-char'
+Plug 'rust-lang/rust.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
 
 " vim-scripts repos
 " Plug 'VOoM'
@@ -91,9 +93,12 @@ let g:rg_command = '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
+" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " let g:RefreshRunningBrowserDefault = 'chrome'
 " let g:psc_ide_syntastic_mode = 1
-let g:racer_experimental_completer = 1
+" let g:racer_experimental_completer = 1
 let g:rustfmt_autosave = 1
 let g:vim_json_syntax_conceal = 0
 
@@ -156,6 +161,10 @@ endif
 
 " inoremap <Tab> <C-o>
 inoremap <Tab> <Esc>l
+" GREG: setxkbmap -option ctrl:nocaps " ubuntu capslock -> control
+" au BufEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+" au BufLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+"
 " inoremap <Tab> <Esc>`^ " doesn't work on ubuntu?
 "GREG this one above I used before for tab and it was good
 " nnoremap <Tab> <Esc>i<Esc>
@@ -401,6 +410,9 @@ endfunction
 
 " make uses real tabs
 au FileType make set noexpandtab
+
+" DDlog datalog
+au BufRead,BufNewFile *.dl set filetype=dl
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby

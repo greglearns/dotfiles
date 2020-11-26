@@ -1,0 +1,6 @@
+#!/bin/zsh
+setxkbmap -option ctrl:nocaps
+
+# exit and and kill terminal
+xdotool key --clearmodifiers Ctrl+Shift+Q key --clearmodifiers KP_Enter
+# kill -3 $PPID # kill -15 $PPID

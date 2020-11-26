@@ -32,6 +32,20 @@ smartresize() {
 
 export PATH="$HOME/lib:$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin"
 export PATH="$HOME/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$HOME/.local/bin:$PATH"
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# if [ -s "$HOME/.nvm/nvm.sh" ]; then
+#   # export NVM_DIR="$HOME/.nvm"
+#   nvm_cmds=(nvm node npm yarn vim)
+#   for cmd in $nvm_cmds ; do
+#     alias $cmd="unalias $nvm_cmds && unset nvm_cmds && . $NVM_DIR/nvm.sh && $cmd"
+#   done
+# fi
+
+# if [ -n "${USE_NVM}" ]; then
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; # This loads nvm
+#   # echo "configuring nvm"
+#   nvm use >/dev/null 2>&1;
+# fi
 
 [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ] && source /usr/local/etc/bash_completion.d/cdargs-bash.sh
 
@@ -44,7 +58,7 @@ alias rm="nocorrect rm"
 alias rm="nocorrect rm"
 alias sshn="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 alias tim="date; timer"
-alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps|.cache'"
+alias tre="tree -a -nI '.git*|bundle|elm-stuff|node_modules|target|tmp|bower_components|output|deps|.cache|build|_build'"
 alias fd=fdfind
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
@@ -58,7 +72,8 @@ export HOSTNAME=${HOST}
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 export KOPS_STATE_STORE=s3://clusters.dev.devplan.io
-export AWS_PROFILE=2020dev
+export AWS_PROFILE=cwwt
+# export AWS_PROFILE=2020dev
 alias k=kubectl
 # alias ka="kubectl --context=us-west-2.dev.devplan.io"
 # alias ka="kubectl get po --all-namespaces"
@@ -137,18 +152,26 @@ if [ -f '/Users/greg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/greg
 
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 
-# begin timer completion
-#. <(timer --completion)
-# end timer completion
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 
 # begin timer completion
-. <(timer --completion)
+# . <(timer --completion)
 # end timer completion
+
+# init rbenv so ruby commands work
+# eval "$(rbenv init -)"
+
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+# chruby ruby-2.5.8
+# nvm use 12.16.1
+
+source /home/greg/.config/broot/launcher/bash/br
+eval "$(zoxide init zsh)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export DDLOG_HOME="/home/greg/code/ddlog-v0.30.0-20201027231514-linux/ddlog"
+export PATH="$DDLOG_HOME/bin:$PATH"

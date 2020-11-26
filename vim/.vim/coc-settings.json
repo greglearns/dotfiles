@@ -1,6 +1,6 @@
 {
   "suggest.autoTrigger": "none",
-  "coc.preferences.formatOnSaveFiletypes": ["elm"],
+  "coc.preferences.formatOnSaveFiletypes": ["elm","css","js","javascript","rust"],
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
@@ -10,5 +10,6 @@
         "elmAnalyseTrigger": "change"
       }
     }
-  }
+  },
+  "rust-analyzer.diagnostics.disabled": ["E0601"]
 }

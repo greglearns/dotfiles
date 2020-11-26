@@ -245,3 +245,31 @@ npm install -g commitizen
 npm install -g cz-conventional-changelog
 # npm install -g conventional-changelog-cli
 cargo install clog-cli
+npm install hjson -g
+curl https://get.volta.sh | bash
+
+
+# https://www.wezm.net/v2/posts/2020/100-rust-binaries/
+# emulsion
+# gitui
+# broot
+# alacritty
+# https://github.com/sharkdp/pastel
+# https://github.com/watchexec/watchexec
+# https://github.com/chmln/sd  -- sed replacement
+# https://github.com/hatoo/oha  -- load tester
+# https://swc.rs/  -- babel competitor
+# https://starship.rs/
+# https://github.com/imsnif/bandwhich
+# https://github.com/ajeetdsouza/zoxide
+# https://gitlab.com/dns2utf8/color_blinder
+# https://github.com/marcusbuffett/pipe-rename
+# https://volta.sh/  -- npm
+# https://github.com/orf/ptail
+# https://github.com/dalance/procs  -- ps replacement
+# https://github.com/jantap/rsmixer  -- audio mixer per app
+# https://github.com/Edu4rdSHL/fhc  -- namecheap checker
+# https://github.com/aeshirey/waitfor
+# https://github.com/Nukesor/pueue
+
+
